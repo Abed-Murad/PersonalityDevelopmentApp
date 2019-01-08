@@ -2,6 +2,8 @@ package com.am.betterme.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,12 +13,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.am.betterme.R;
+import com.am.betterme.adapter.PostsAdapter;
+import com.am.betterme.data.Post;
+import com.am.betterme.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private ActivityMainBinding mainBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +34,16 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         setupTabLayout();
+        setupDrawer(toolbar);
 
+        RecyclerView postsRecyclerView = findViewById(R.id.postsRecyclerView);
+        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        postsRecyclerView.setAdapter(new PostsAdapter(this, (view, position, model) -> {
+            Toast.makeText(this, "Fuck it " + position, Toast.LENGTH_SHORT).show();
+        }));
+    }
+
+    private void setupDrawer(Toolbar toolbar) {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

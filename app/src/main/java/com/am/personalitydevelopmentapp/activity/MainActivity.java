@@ -27,15 +27,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TabLayout tabLayout = findViewById(R.id.tagsTabLayout);
-        for (int i = 0; i < 10; i++) {
-            tabLayout.addTab(tabLayout.newTab());
-            TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
-            tabOne.setText("TAG"+ i);
-            tabLayout.getTabAt(i).setCustomView(tabOne);
-        }
-
-
+        setupTabLayout();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,6 +37,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void setupTabLayout() {
+        TabLayout tabLayout = findViewById(R.id.tagsTabLayout);
+        tabLayout.addTab(tabLayout.newTab());
+        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
+        tabOne.setText("All");
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        for (int i = 1; i < 10; i++) {
+            tabLayout.addTab(tabLayout.newTab());
+            TextView tab = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
+            tab.setText("Self Steam");
+            tabLayout.getTabAt(i).setCustomView(tab);
+        }
     }
 
     @Override

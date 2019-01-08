@@ -2,11 +2,11 @@
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tagTitle"
-    style="@style/TextAppearance.Design.Tab"
+    android:textSize="@dimen/design_tab_text_size"
+    android:textColor="@android:color/white"
     android:layout_width="wrap_content"
-
-    android:layout_height="?attr/actionBarSize"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg_curved_border"
     android:gravity="center"
-    android:padding="16dp"
+    android:padding="8dp"
     android:text="tag1" />

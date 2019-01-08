@@ -1,12 +1,9 @@
 package com.am.personalitydevelopmentapp.activity;
 
-import android.app.AppComponentFactory;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
-import com.am.personalitydevelopmentapp.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

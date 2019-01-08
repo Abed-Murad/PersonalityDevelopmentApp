@@ -19,16 +19,15 @@
             app:tabPaddingEnd="1dp"
             app:tabPaddingStart="1dp" />
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/card_article"
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagsTabLayout" />
-    </android.support.constraint.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/tagsTabLayout"
+            tools:listitem="@layout/card_post" />
+
+         </android.support.constraint.ConstraintLayout>
 </layout>

@@ -1,4 +1,4 @@
-package com.am.personalitydevelopmentapp;
+package com.am.betterme;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.am.personalitydevelopmentapp.activity;
+package com.am.betterme.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

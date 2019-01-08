@@ -1,4 +1,4 @@
-package com.am.personalitydevelopmentapp;
+package com.am.betterme;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

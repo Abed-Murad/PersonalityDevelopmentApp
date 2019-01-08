@@ -1,9 +1,9 @@
 package com.am.personalitydevelopmentapp.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.am.personalitydevelopmentapp.R;
 
@@ -28,8 +29,14 @@ public class MainActivity extends AppCompatActivity
 
         TabLayout tabLayout = findViewById(R.id.tagsTabLayout);
         for (int i = 0; i < 10; i++) {
-            tabLayout.addTab(tabLayout.newTab().setText("Tag"+i));
+            tabLayout.addTab(tabLayout.newTab());
+            TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
+            tabOne.setText("TAG"+ i);
+            tabLayout.getTabAt(i).setCustomView(tabOne);
         }
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

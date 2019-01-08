@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-<TextView
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tagTitle"
+    style="@style/TextAppearance.Design.Tab"
     android:layout_width="wrap_content"
+
+    android:layout_height="?attr/actionBarSize"
+    android:background="@drawable/bg_curved_border"
     android:gravity="center"
     android:padding="16dp"
-    style="@style/TextAppearance.Design.Tab"
-    android:text="tag1"
-    android:layout_height="?attr/actionBarSize" />
-</android.support.constraint.ConstraintLayout>
+    android:text="tag1" />

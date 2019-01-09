@@ -16,8 +16,8 @@
             android:layout_height="?attr/actionBarSize"
             app:tabIndicatorHeight="0dp"
             app:tabMode="scrollable"
-            app:tabPaddingEnd="1dp"
-            app:tabPaddingStart="1dp" />
+            app:tabPaddingEnd="4dp"
+            app:tabPaddingStart="4dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/postsRecyclerView"

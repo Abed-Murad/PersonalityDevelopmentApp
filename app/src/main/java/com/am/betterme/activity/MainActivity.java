@@ -13,13 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
-import com.am.betterme.data.Post;
 import com.am.betterme.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity

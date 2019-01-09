@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.am.betterme.data.Post;
+import com.am.betterme.data.model.Post;
 import com.am.betterme.databinding.CardPostBinding;
 
 import java.util.ArrayList;
@@ -32,36 +32,36 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    @NonNull
     @Override
     public PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-                CardPostBinding cardBinding = CardPostBinding.inflate(mInflater, parent, false);
-                return new PostHolder(cardBinding);
+        CardPostBinding cardBinding = CardPostBinding.inflate(mInflater, parent, false);
+        return new PostHolder(cardBinding);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull PostHolder postHolder, final int position) {
 
-            if (mPostList.size() != 0) {
+        if (mPostList.size() != 0) {
 
-                if (position % 2 == 0) {
-                    postHolder.mBinding.imageView2.setVisibility(View.INVISIBLE);
-                } else {
-                    postHolder.mBinding.imageView2.setVisibility(View.VISIBLE);
-                }
-                final Post post = getItem(position);
-                postHolder.bindData(post);
-
+            if (position % 2 == 0) {
+                postHolder.mBinding.imageView2.setVisibility(View.INVISIBLE);
+            } else {
+                postHolder.mBinding.imageView2.setVisibility(View.VISIBLE);
             }
+            final Post post = getItem(position);
+            postHolder.bindData(post);
+
+        }
 
 
     }
 
 
-
     @Override
     public int getItemCount() {
-        return mPostList == null ? 0 :10 /*mPostList.size()*/; //TODO: FIX THIS
+        return mPostList == null ? 0 : 10 /*mPostList.size()*/; //TODO: FIX THIS
     }
 
     public void add(Post post) {
@@ -87,13 +87,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
         void onItemClick(View view, int position, Post model);
     }
 
-    public class PostHolder extends RecyclerView.ViewHolder {
+    class PostHolder extends RecyclerView.ViewHolder {
         private final CardPostBinding mBinding;
 
         PostHolder(CardPostBinding itemView) {
             super(itemView.getRoot());
             this.mBinding = itemView;
-            mBinding.getRoot().setOnClickListener(view -> mArticleClickListener.onItemClick(mBinding.getRoot(), getAdapterPosition(), getItem(getAdapterPosition())));
+            mBinding.getRoot().setOnClickListener(view ->
+                    mArticleClickListener.onItemClick(mBinding.getRoot(),
+                            getAdapterPosition(), null /*getItem(getAdapterPosition())*/)); //TODO: FIX THIS
 
         }
 

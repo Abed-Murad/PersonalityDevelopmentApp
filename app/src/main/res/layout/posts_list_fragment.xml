@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout >
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
@@ -10,7 +10,7 @@
         tools:context=".activity.MainActivity"
         tools:showIn="@layout/app_bar_main">
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tagsTabLayout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -19,7 +19,7 @@
             app:tabPaddingEnd="4dp"
             app:tabPaddingStart="4dp" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/postsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -30,5 +30,5 @@
             app:layout_constraintTop_toBottomOf="@+id/tagsTabLayout"
             tools:listitem="@layout/card_post" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

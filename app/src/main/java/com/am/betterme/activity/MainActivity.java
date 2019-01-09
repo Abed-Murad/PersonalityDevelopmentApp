@@ -30,15 +30,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        setupTabLayout();
         setupDrawer(toolbar);
-
-        RecyclerView postsRecyclerView = findViewById(R.id.postsRecyclerView);
-        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        postsRecyclerView.setAdapter(new PostsAdapter(this, (view, position, model) -> {
-            Toast.makeText(this, "Fuck it " + position, Toast.LENGTH_SHORT).show();
-        }));
     }
 
     private void setupDrawer(Toolbar toolbar) {
@@ -52,20 +44,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void setupTabLayout() {
-        TabLayout tabLayout = findViewById(R.id.tagsTabLayout);
-        tabLayout.addTab(tabLayout.newTab());
-        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
-        tabOne.setText("All");
-        tabLayout.getTabAt(0).setCustomView(tabOne);
 
-        for (int i = 1; i < 10; i++) {
-            tabLayout.addTab(tabLayout.newTab());
-            TextView tab = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
-            tab.setText("Self Steam");
-            tabLayout.getTabAt(i).setCustomView(tab);
-        }
-    }
 
     @Override
     public void onBackPressed() {

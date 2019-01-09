@@ -4,12 +4,22 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.am.betterme.R;
+import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.PostsListViewModel;
 
 public class PostsListFragment extends Fragment {
@@ -23,6 +33,9 @@ public class PostsListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        setupTabLayout();
+        setupRecyclerView();
+
         return inflater.inflate(R.layout.posts_list_fragment, container, false);
     }
 
@@ -31,6 +44,33 @@ public class PostsListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PostsListViewModel.class);
         // TODO: Use the ViewModel
+
+
+
+    }
+
+
+    private void setupRecyclerView() {
+        RecyclerView postsRecyclerView = findViewById(R.id.postsRecyclerView);
+        postsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        postsRecyclerView.setAdapter(new PostsAdapter(this, (view, position, model) -> {
+            Toast.makeText(this, "Fuck it " + position, Toast.LENGTH_SHORT).show();
+        }));
+    }
+
+    private void setupTabLayout() {
+        TabLayout tabLayout = findViewById(R.id.tagsTabLayout);
+        tabLayout.addTab(tabLayout.newTab());
+        TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
+        tabOne.setText("All");
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        for (int i = 1; i < 10; i++) {
+            tabLayout.addTab(tabLayout.newTab());
+            TextView tab = (TextView) LayoutInflater.from(this).inflate(R.layout.tab_tag, null);
+            tab.setText("Self Steam");
+            tabLayout.getTabAt(i).setCustomView(tab);
+        }
     }
 
 }

@@ -1,5 +1,8 @@
 package com.am.betterme.activity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.navigation.NavigationView;
@@ -87,6 +90,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.navVideos) {
 
         } else if (id == R.id.navRateUs) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id="+this.getPackageName())));
+
+
+
 
         } else if (id == R.id.navAbout) {
             new LibsBuilder()

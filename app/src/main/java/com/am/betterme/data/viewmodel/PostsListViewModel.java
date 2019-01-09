@@ -1,4 +1,4 @@
-package com.am.betterme.data;
+package com.am.betterme.data.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 

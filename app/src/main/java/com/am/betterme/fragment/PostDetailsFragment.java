@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.am.betterme.R;
+import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 
 public class PostDetailsFragment extends Fragment {
 

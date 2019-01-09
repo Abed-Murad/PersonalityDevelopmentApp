@@ -1,4 +1,4 @@
-package com.am.betterme.fragment;
+package com.am.betterme.data.viewmodel;
 
 import androidx.lifecycle.ViewModel;
 

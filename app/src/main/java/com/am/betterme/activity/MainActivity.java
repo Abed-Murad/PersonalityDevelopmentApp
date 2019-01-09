@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.databinding.ActivityMainBinding;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,15 +86,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.navAll) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.navArticles) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.navVideos) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.navRateUs) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.navAbout) {
+            new LibsBuilder()
+                    .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                    .withAboutIconShown(true)
+                    .withLibraries("ActionBarPullToRefresh" , "AndroidFlowLayout" , "Butterknife")
+                    .withAboutVersionShown(true)
+                    .withAboutDescription(getString(R.string.aboutLibraries_description_text))
+                    .start(this); 
 
         }
 

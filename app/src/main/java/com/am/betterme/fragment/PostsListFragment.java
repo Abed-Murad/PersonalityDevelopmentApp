@@ -34,9 +34,23 @@ public class PostsListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mContext = getContext();
         mLayout = PostsListFragmentBinding.inflate(inflater, container, false);
-        setupTabLayout();
         setupRecyclerView();
+        setupTabLayout();
         return mLayout.getRoot();
+    }
+    private void setupTabLayout() {
+        TabLayout tabLayout = mLayout.tagsTabLayout;
+        tabLayout.addTab(tabLayout.newTab());
+        TextView tabOne = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
+        tabOne.setText("All");
+        tabLayout.getTabAt(0).setCustomView(tabOne);
+
+        for (int i = 1; i < 10; i++) {
+            tabLayout.addTab(tabLayout.newTab());
+            TextView tab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
+            tab.setText("Self Steam");
+            tabLayout.getTabAt(i).setCustomView(tab);
+        }
     }
 
     @Override
@@ -58,19 +72,6 @@ public class PostsListFragment extends Fragment {
         }));
     }
 
-    private void setupTabLayout() {
-        TabLayout tabLayout = mLayout.tagsTabLayout;
-        tabLayout.addTab(tabLayout.newTab());
-        TextView tabOne = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
-        tabOne.setText("All");
-        tabLayout.getTabAt(0).setCustomView(tabOne);
 
-        for (int i = 1; i < 10; i++) {
-            tabLayout.addTab(tabLayout.newTab());
-            TextView tab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
-            tab.setText("Self Steam");
-            tabLayout.getTabAt(i).setCustomView(tab);
-        }
-    }
 
 }

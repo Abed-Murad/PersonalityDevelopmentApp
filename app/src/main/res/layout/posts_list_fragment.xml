@@ -6,7 +6,6 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".activity.MainActivity"
         tools:showIn="@layout/app_bar_main">
 
@@ -18,16 +17,16 @@
             app:tabMode="scrollable"
             app:tabPaddingEnd="4dp"
             app:tabPaddingStart="4dp" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/postsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tagsTabLayout"
+            app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/card_post" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

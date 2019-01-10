@@ -11,16 +11,27 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.am.betterme.R;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 
 public class PostDetailsFragment extends Fragment {
+    private static final String ARG_POST_ID = "postId";
 
+    private String mPostId;
     private PostDetailsViewModel mViewModel;
 
     public static PostDetailsFragment newInstance() {
         return new PostDetailsFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mPostId = getArguments().getString(ARG_POST_ID);
+        }
     }
 
     @Override
@@ -33,6 +44,7 @@ public class PostDetailsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PostDetailsViewModel.class);
+        Toast.makeText(getContext(), mPostId, Toast.LENGTH_SHORT).show();
         // TODO: Use the ViewModel
     }
 

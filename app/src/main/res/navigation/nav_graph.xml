@@ -8,10 +8,18 @@
         android:name="com.am.betterme.fragment.PostsFragment"
         android:label="PostsFragment" >
 
+        <action
+            android:id="@+id/action_postsFragment_to_postDetailsFragment"
+            app:destination="@id/postDetailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/postDetailsFragment"
         android:name="com.am.betterme.fragment.PostDetailsFragment"
         android:label="PostDetailsFragment" >
+        <argument
+            android:name="postId"
+            android:defaultValue="No ID Was Sent"
+            app:argType="string" />
     </fragment>
 </navigation>

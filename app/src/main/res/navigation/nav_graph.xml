@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/postsListFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/postDetailsFragment">
 
     <fragment
-        android:id="@+id/postsListFragment"
-        android:name="com.am.betterme.fragment.PostsListFragment"
-        android:label="posts_list_fragment"
-        tools:layout="@layout/posts_list_fragment" >
-        <action
-            android:id="@+id/action_postsListFragment_to_postDetailsFragment"
-            app:destination="@id/postDetailsFragment" />
+        android:id="@+id/postsFragment"
+        android:name="com.am.betterme.fragment.PostsFragment"
+        android:label="PostsFragment" >
+
     </fragment>
-
-
     <fragment
         android:id="@+id/postDetailsFragment"
         android:name="com.am.betterme.fragment.PostDetailsFragment"
-        android:label="post_details_fragment"
-        tools:layout="@layout/post_details_fragment" >
-        <argument
-            android:name="postId"
-            android:defaultValue="postId is not found"
-            app:argType="string" />
+        android:label="PostDetailsFragment" >
     </fragment>
 </navigation>

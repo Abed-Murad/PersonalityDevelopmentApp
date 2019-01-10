@@ -19,7 +19,6 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep class .R
--keep class **.R$* {
-    <fields>;
+-keepclasseswithmembers class **.R$* {
+    public static final int define_*;
 }

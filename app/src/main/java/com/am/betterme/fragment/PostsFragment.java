@@ -1,14 +1,8 @@
 package com.am.betterme.fragment;
 
-import androidx.lifecycle.ViewModelProviders;
+
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,22 +12,32 @@ import android.widget.Toast;
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.viewmodel.PostsListViewModel;
-import com.am.betterme.databinding.PostsListFragmentBinding;
+import com.am.betterme.databinding.PostsFragmentBinding;
+import com.google.android.material.tabs.TabLayout;
 
-public class PostsListFragment extends Fragment {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class PostsFragment extends Fragment {
 
     private PostsListViewModel mViewModel;
-    private PostsListFragmentBinding mLayout;
+    private PostsFragmentBinding mLayout;
     private Context mContext;
-    public static PostsListFragment newInstance() {
-        return new PostsListFragment();
+    public static PostsFragment newInstance() {
+        return new PostsFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mContext = getContext();
-        mLayout = PostsListFragmentBinding.inflate(inflater, container, false);
+
+        mLayout = PostsFragmentBinding.inflate(inflater, container, false);
         setupRecyclerView();
         setupTabLayout();
         return mLayout.getRoot();
@@ -51,6 +55,7 @@ public class PostsListFragment extends Fragment {
             tab.setText("Self Steam");
             tabLayout.getTabAt(i).setCustomView(tab);
         }
+
     }
 
     @Override
@@ -65,6 +70,7 @@ public class PostsListFragment extends Fragment {
 
 
     private void setupRecyclerView() {
+
         RecyclerView postsRecyclerView = mLayout.postsRecyclerView;
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         postsRecyclerView.setAdapter(new PostsAdapter(mContext, (view, position, model) -> {

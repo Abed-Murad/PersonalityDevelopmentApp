@@ -1,16 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/side_nav_bar"
-    android:layout_height="match_parent"
-    tools:context=".fragment.PostDetailsFragment">
+    android:layout_height="match_parent">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="48sp"
-        android:text="Details" />
+        tools:context=".fragment.PostDetailsFragment">
 
-</FrameLayout>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:src="@drawable/side_nav_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="344dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Trump take a hit after two year of hiting "
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
+            tools:text="Trump take a hit after two year of hiting " />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="22 hours ago"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:text="Agripeta Abnobas accelerare in varius berolinum!Heu, hydra!Nunquam talem cotta.Historias tolerare!Amors sunt abnobas de fidelis calcaria.Eposs observare in bi-color caelos!Cum accentor ridetis, omnes accolaes imperium emeritis, pius onuses.Cur imber persuadere?Acipenser de fortis nixus, reperire gallus!Ignigenas experimentum, tanquam lotus torus.Cum abnoba assimilant, omnes rationees resuscitabo talis, teres classises.Nuclear vexatum iaceres potus, tanquam emeritis compater.Peritus calcarias ducunt ad resistentia.Cur hibrida accelerare?Mons, nuclear vexatum iacere, et armarium.Primus devirginato aegre talems particula est.Pol, a bene plasmator, olla!Detriuss credere, tanquam bassus acipenser.Cur imber observare?Cum lapsus ridetis, omnes visuses promissio alter, fidelis caculaes.Sunt calceuses captis domesticus, fidelis orexises.Cur guttus potus?Cur aonides congregabo?Gratis lunas ducunt ad pars.Azureus clabulare tandem amors consilium est.Est mirabilis gallus, cesaris.Heu, varius zeta!Est pius cotta, cesaris.Ecce, plasmator!Extums potus, tanquam secundus armarium.Compater, coordinatae, et cacula.Alter, emeritis gabaliums sapienter manifestum de regius, grandis hibrida.Est azureus luna, cesaris.Brevis, barbatus parss recte carpseris de ferox, fidelis bursa.Historias mori in rusticus burdigala!Fluctuis volare in talis alta muta!Audax medicina hic magicaes solem est.Cum fides studere, omnes classises consumere neuter, raptus heureteses.Studere hic ducunt ad festus quadra.Racana resisteres, tanquam mirabilis accola.Nunquam visum clabulare.Cannabiss congregabo!Cur glos congregabo?Est bi-color torquis, cesaris.Est alter liberi, cesaris.Imbers ridetis!Absolutios prarere in ostravia!Caniss manducare!Accelerare acceleratrix ducunt ad bassus clinias.Nunquam imperium quadra.Lumen de domesticus frondator, carpseris sensorem!Ecce.Favere foris ducunt ad raptus silva.Peregrinationes unus ducunt ad festus usus.Ususs assimilant in alter gandavum!Est velox lactea, cesaris.Pulchritudines sunt nuptias de castus imber.Devatio, lanista, et gallus.Demolitione, gallus, et buxum.A falsis, lacta castus hydra.Sunt parmaes tractare peritus, neuter orexises.Abactor moris, tanquam dexter epos.Heu.Cur detrius persuadere?Detriuss sunt eleatess de peritus aonides.Danista, demolitione, et cannabis.Quadra de varius canis, promissio cedrium!Pol, a bene canis, danista!Nunquam fallere lanista.Ubi est emeritis gabalium?"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="7dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3"
+            app:srcCompat="@drawable/ic_menu_share" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

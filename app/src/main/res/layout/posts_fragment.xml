@@ -11,12 +11,18 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tagsTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="74dp"
+            app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:tabIndicatorHeight="0dp"
             app:tabMode="scrollable"
             app:tabPaddingEnd="4dp"
             app:tabPaddingStart="4dp" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/postsRecyclerView"
             android:layout_width="match_parent"
@@ -28,6 +34,19 @@
             app:layout_constraintTop_toBottomOf="@+id/tagsTabLayout"
             app:layout_constraintVertical_bias="1.0"
             tools:listitem="@layout/card_post" />
+
+        <ImageView
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="123dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginBottom="307dp"
+            android:clickable="true"
+            android:transitionName="header_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tagsTabLayout"
+            app:srcCompat="@drawable/ic_menu_camera" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

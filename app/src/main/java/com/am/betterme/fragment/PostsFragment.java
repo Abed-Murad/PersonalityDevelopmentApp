@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.FragmentNavigator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +42,19 @@ public class PostsFragment extends Fragment {
         mLayout = PostsFragmentBinding.inflate(inflater, container, false);
         setupRecyclerView();
         setupTabLayout();
+
+        mLayout.floatingActionButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
+                        .addSharedElement(mLayout.floatingActionButton2, "header_image")
+                        .build();
+
+                PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
+                action.setPostId(5 + "");
+                Navigation.findNavController(v).navigate(action, extras);
+            }
+        });
         return mLayout.getRoot();
     }
     private void setupTabLayout() {
@@ -73,6 +88,14 @@ public class PostsFragment extends Fragment {
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         postsRecyclerView.setAdapter(new PostsAdapter(mContext, (view, position, model) -> {
             Toast.makeText(mContext, "Fuck it " + position, Toast.LENGTH_SHORT).show();
+
+//            FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
+//                    .addSharedElement(mLayout., "header_image")
+//                    .addSharedElement(titleView, "header_title")
+//                    .build();
+
+
+
             PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
             action.setPostId(position + "");
             Navigation.findNavController(view).navigate(action);

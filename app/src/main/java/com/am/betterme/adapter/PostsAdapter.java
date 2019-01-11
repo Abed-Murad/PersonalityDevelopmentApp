@@ -1,8 +1,10 @@
 package com.am.betterme.adapter;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.am.betterme.data.model.Post;
 import com.am.betterme.databinding.CardPostBinding;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +64,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
 
     @Override
     public int getItemCount() {
-        return mPostList == null ? 0 : 10 /*mPostList.size()*/; //TODO: FIX THIS
+        return mPostList == null ? 0 :  mPostList.size(); //TODO: FIX THIS
     }
 
     public void add(Post post) {
@@ -95,13 +98,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
             this.mBinding = itemView;
             mBinding.getRoot().setOnClickListener(view ->
                     mArticleClickListener.onItemClick(mBinding.getRoot(),
-                            getAdapterPosition(), null /*getItem(getAdapterPosition())*/)); //TODO: FIX THIS
+                            getAdapterPosition(), getItem(getAdapterPosition()))); //TODO: FIX THIS
 
         }
 
         private void bindData(Post post) {
-//            mBinding.setPost(post);
-//            Glide.with(mContext).load(post.getUrlToImage()).into(mBinding.articleImage);
+            mBinding.setPost(post);
+            Glide.with(mContext).load(post.getImage_url()).into(mBinding.articleImage);
             mBinding.executePendingBindings();
         }
     }

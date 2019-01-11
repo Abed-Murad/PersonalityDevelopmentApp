@@ -47,6 +47,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
     /* Logger */
     implementation 'com.orhanobut:logger:2.2.0'
+    //Youtube Player
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:8.0.1'
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testImplementation 'junit:junit:4.12'

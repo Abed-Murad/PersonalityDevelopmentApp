@@ -45,6 +45,7 @@ public class PostsFragment extends Fragment {
     private Context mContext;
     private PostsAdapter mPostsAdapter;
     private CollectionReference mPostRef = FirebaseFirestore.getInstance().collection("Posts");
+
     public static PostsFragment newInstance() {
         return new PostsFragment();
     }
@@ -53,16 +54,13 @@ public class PostsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mContext = getContext();
+
+//        mPostRef.whereEqualTo("is_video", true).get().addOnCompleteListener(task -> {
         mPostRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
 
-//                for (QueryDocumentSnapshot document : task.getResult()) {
-//                    Log.d("ttt", document.getId() + " => " + document.getData());
-//                    Post post = document.toObject(Post.class);
-//                    Logger.d(post);
-//                }
             } else {
                 Log.w("ttt", "Error getting documents.", task.getException());
             }
@@ -74,6 +72,7 @@ public class PostsFragment extends Fragment {
 
         return mLayout.getRoot();
     }
+
     private void setupTabLayout() {
         TabLayout tabLayout = mLayout.tagsTabLayout;
         tabLayout.addTab(tabLayout.newTab());
@@ -112,7 +111,6 @@ public class PostsFragment extends Fragment {
         });
         postsRecyclerView.setAdapter(mPostsAdapter);
     }
-
-
+//TODO: Create A Listener here to ne implemented by the main Activity so it can change the Fragment Data When ever this drawer button is clicked 
 
 }

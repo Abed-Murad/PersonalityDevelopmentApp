@@ -1,5 +1,6 @@
 package com.am.betterme.fragment;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -69,8 +70,8 @@ public class PostDetailsFragment extends Fragment {
 
         getLifecycle().addObserver(mLayout.youtubeView);
         //mToolbar , fab will be hidden and shown when FullScreen toggles
-        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.floatingActionButton, mLayout.textView2, mLayout.textView3, mLayout.textView4);
-        getActivity().getLifecycle().addObserver(mLayout.youtubeView);
+        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.floatingActionButton);
+        getLifecycle().addObserver(mLayout.youtubeView);
 
         mLayout.youtubeView.initialize(
                 initializedYouTubePlayer ->
@@ -79,6 +80,7 @@ public class PostDetailsFragment extends Fragment {
                             public void onReady() {
                                 String videoId = "pS-gbqbVd8c"; //Game of Thorns - Light of the Seven
                                 initializedYouTubePlayer.loadVideo(videoId, 0);
+                                fullScreenHelper.enterFullScreen();
                             }
                         }), true);
 

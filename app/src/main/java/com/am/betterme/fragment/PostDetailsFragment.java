@@ -15,13 +15,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.am.betterme.R;
+import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
+import com.am.betterme.databinding.PostDetailsFragmentBinding;
+import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
 
 public class PostDetailsFragment extends Fragment {
     private static final String ARG_POST_ID = "postId";
+    private static final String ARG_POST = "post";
 
     private String mPostId;
+    private Post mPost;
     private PostDetailsViewModel mViewModel;
+    private PostDetailsFragmentBinding mLayout;
 
     public static PostDetailsFragment newInstance() {
         return new PostDetailsFragment();
@@ -32,15 +39,17 @@ public class PostDetailsFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mPostId = getArguments().getString(ARG_POST_ID);
+            mPost = getArguments().getParcelable(ARG_POST);
         }
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.post_details_fragment, container, false);
-
-        return view;
+        mLayout = PostDetailsFragmentBinding.inflate(inflater ,  container, false);
+        mLayout.setPost(mPost);
+        Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.imageView3);
+        return mLayout.getRoot();
     }
 
     @Override

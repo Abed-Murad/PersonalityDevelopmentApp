@@ -106,6 +106,7 @@ public class PostsFragment extends Fragment {
         mPostsAdapter = new PostsAdapter(mContext, (view, position, model) -> {
             PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
             action.setPostId(position + "");
+            action.setPost(model);
             Navigation.findNavController(view).navigate(action);
 
         });

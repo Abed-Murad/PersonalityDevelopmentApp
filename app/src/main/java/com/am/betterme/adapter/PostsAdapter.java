@@ -14,6 +14,8 @@ import com.am.betterme.data.model.Post;
 import com.am.betterme.databinding.CardPostBinding;
 import com.bumptech.glide.Glide;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 import java.util.ArrayList;
 import java.util.List;
 

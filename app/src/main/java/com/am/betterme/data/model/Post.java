@@ -1,9 +1,15 @@
 package com.am.betterme.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import org.ocpsoft.prettytime.PrettyTime;
+
 import java.util.Date;
 import java.util.List;
 
-public class Post {
+public class Post implements Parcelable {
+
     private String body;
     private Date date;
     private String image_url;
@@ -20,8 +26,9 @@ public class Post {
         this.body = body;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDate() {
+        PrettyTime prettyTime = new PrettyTime();
+        return prettyTime.format(date);
     }
 
     public void setDate(Date date) {
@@ -71,6 +78,8 @@ public class Post {
     public Post() {
     }
 
+
+
     @Override
     public String toString() {
         return "Post{" +
@@ -83,4 +92,43 @@ public class Post {
                 ", tags=" + tags +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.body);
+        dest.writeLong(this.date != null ? this.date.getTime() : -1);
+        dest.writeString(this.image_url);
+        dest.writeString(this.title);
+        dest.writeString(this.url);
+        dest.writeByte(this.is_video ? (byte) 1 : (byte) 0);
+        dest.writeStringList(this.tags);
+    }
+
+    protected Post(Parcel in) {
+        this.body = in.readString();
+        long tmpDate = in.readLong();
+        this.date = tmpDate == -1 ? null : new Date(tmpDate);
+        this.image_url = in.readString();
+        this.title = in.readString();
+        this.url = in.readString();
+        this.is_video = in.readByte() != 0;
+        this.tags = in.createStringArrayList();
+    }
+
+    public static final Parcelable.Creator<Post> CREATOR = new Parcelable.Creator<Post>() {
+        @Override
+        public Post createFromParcel(Parcel source) {
+            return new Post(source);
+        }
+
+        @Override
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 }

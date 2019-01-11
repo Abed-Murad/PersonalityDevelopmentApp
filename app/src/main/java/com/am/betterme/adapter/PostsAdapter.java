@@ -24,7 +24,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
     private Context mContext;
     private List<Post> mPostList;
     private LayoutInflater mInflater;
-
     private OnArticleClickListener mArticleClickListener;
 
 
@@ -40,23 +39,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
     public PostHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardPostBinding cardBinding = CardPostBinding.inflate(mInflater, parent, false);
         return new PostHolder(cardBinding);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull PostHolder postHolder, final int position) {
+        final Post post = getItem(position);
 
-        if (mPostList.size() != 0) {
+        if (post.isIs_video()) {
+            postHolder.mBinding.youtubeIconImageView.setVisibility(View.VISIBLE);
 
-            if (position % 2 == 0) {
-                postHolder.mBinding.imageView2.setVisibility(View.INVISIBLE);
-            } else {
-                postHolder.mBinding.imageView2.setVisibility(View.VISIBLE);
-            }
-            final Post post = getItem(position);
-            postHolder.bindData(post);
+        } else {
+            postHolder.mBinding.youtubeIconImageView.setVisibility(View.INVISIBLE);
 
         }
+        postHolder.bindData(post);
 
 
     }
@@ -64,7 +60,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
 
     @Override
     public int getItemCount() {
-        return mPostList == null ? 0 :  mPostList.size(); //TODO: FIX THIS
+        return mPostList == null ? 0 : mPostList.size();
     }
 
     public void add(Post post) {
@@ -98,7 +94,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
             this.mBinding = itemView;
             mBinding.getRoot().setOnClickListener(view ->
                     mArticleClickListener.onItemClick(mBinding.getRoot(),
-                            getAdapterPosition(), getItem(getAdapterPosition()))); //TODO: FIX THIS
+                            getAdapterPosition(), getItem(getAdapterPosition())));
 
         }
 

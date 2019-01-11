@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity
             new LibsBuilder()
                     .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
                     .withAboutIconShown(true)
-                    .withLibraries("crouton, actionbarsherlock", "showcaseview")
                     .withAboutVersionShown(true)
                     .withAboutDescription(getString(R.string.aboutLibraries_description_text))
                     .withFields(R.string.class.getFields())

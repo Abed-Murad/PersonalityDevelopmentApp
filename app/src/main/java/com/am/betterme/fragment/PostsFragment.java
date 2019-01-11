@@ -43,18 +43,7 @@ public class PostsFragment extends Fragment {
         setupRecyclerView();
         setupTabLayout();
 
-        mLayout.floatingActionButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
-                        .addSharedElement(mLayout.floatingActionButton2, "header_image")
-                        .build();
 
-                PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
-                action.setPostId(5 + "");
-                Navigation.findNavController(v).navigate(action, extras);
-            }
-        });
         return mLayout.getRoot();
     }
     private void setupTabLayout() {
@@ -88,13 +77,6 @@ public class PostsFragment extends Fragment {
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         postsRecyclerView.setAdapter(new PostsAdapter(mContext, (view, position, model) -> {
             Toast.makeText(mContext, "Fuck it " + position, Toast.LENGTH_SHORT).show();
-
-//            FragmentNavigator.Extras extras = new FragmentNavigator.Extras.Builder()
-//                    .addSharedElement(mLayout., "header_image")
-//                    .addSharedElement(titleView, "header_title")
-//                    .build();
-
-
 
             PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
             action.setPostId(position + "");

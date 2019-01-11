@@ -3,6 +3,8 @@ package com.am.betterme.data.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.am.betterme.util.FUNC;
+
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
@@ -27,8 +29,7 @@ public class Post implements Parcelable {
     }
 
     public String getDate() {
-        PrettyTime prettyTime = new PrettyTime();
-        return prettyTime.format(date);
+        return FUNC.getPrettyDate(date);
     }
 
     public void setDate(Date date) {

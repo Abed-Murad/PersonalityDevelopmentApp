@@ -76,8 +76,6 @@ public class PostsFragment extends Fragment {
         RecyclerView postsRecyclerView = mLayout.postsRecyclerView;
         postsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         postsRecyclerView.setAdapter(new PostsAdapter(mContext, (view, position, model) -> {
-            Toast.makeText(mContext, "Fuck it " + position, Toast.LENGTH_SHORT).show();
-
             PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
             action.setPostId(position + "");
             Navigation.findNavController(view).navigate(action);

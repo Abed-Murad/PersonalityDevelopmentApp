@@ -104,7 +104,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
 
         private void bindData(Post post) {
             mBinding.setPost(post);
-            Glide.with(mContext).load(post.getImage_url()).into(mBinding.articleImage);
+            Glide.with(mContext).load(post.getImage_url()).into(mBinding.imageView2);
             mBinding.executePendingBindings();
         }
     }

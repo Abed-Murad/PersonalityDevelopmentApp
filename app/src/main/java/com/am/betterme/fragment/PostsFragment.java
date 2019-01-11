@@ -108,7 +108,7 @@ public class PostsFragment extends Fragment {
             action.setPostId(position + "");
             Navigation.findNavController(view).navigate(action);
 
-        })
+        });
         postsRecyclerView.setAdapter(mPostsAdapter);
     }
 

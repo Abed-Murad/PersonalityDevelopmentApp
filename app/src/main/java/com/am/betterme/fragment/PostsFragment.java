@@ -3,6 +3,7 @@ package com.am.betterme.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,19 @@ import android.widget.Toast;
 
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
+import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostsListViewModel;
 import com.am.betterme.databinding.PostsFragmentBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
+import com.google.api.LogDescriptor;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.orhanobut.logger.Logger;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +41,7 @@ public class PostsFragment extends Fragment {
     private PostsListViewModel mViewModel;
     private PostsFragmentBinding mLayout;
     private Context mContext;
+    private CollectionReference mPostRef = FirebaseFirestore.getInstance().collection("Posts");
     public static PostsFragment newInstance() {
         return new PostsFragment();
     }
@@ -38,7 +50,17 @@ public class PostsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mContext = getContext();
-
+        mPostRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Log.d("ttt", document.getId() + " => " + document.getData());
+                    Post post = document.toObject(Post.class);
+                    Logger.d(post);
+                }
+            } else {
+                Log.w("ttt", "Error getting documents.", task.getException());
+            }
+        });
         mLayout = PostsFragmentBinding.inflate(inflater, container, false);
         setupRecyclerView();
         setupTabLayout();

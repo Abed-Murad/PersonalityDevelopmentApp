@@ -22,3 +22,4 @@
 -keepclasseswithmembers class **.R$* {
     public static final int define_*;
 }
+-keep class org.ocpsoft.prettytime.i18n.**

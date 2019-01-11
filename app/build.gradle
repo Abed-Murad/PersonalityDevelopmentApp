@@ -32,6 +32,7 @@ android {
 
 dependencies {
 
+
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'com.google.android.material:material:1.1.0-alpha02'
@@ -47,6 +48,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
     /* Logger */
     implementation 'com.orhanobut:logger:2.2.0'
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
+
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'

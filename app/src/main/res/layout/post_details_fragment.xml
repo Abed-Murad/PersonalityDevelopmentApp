@@ -25,10 +25,26 @@
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/side_nav_bar"
-                android:transitionName="header_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/youtube_player_view_layout"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.player.YouTubePlayerView
+                    android:id="@+id/youtubeView"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"

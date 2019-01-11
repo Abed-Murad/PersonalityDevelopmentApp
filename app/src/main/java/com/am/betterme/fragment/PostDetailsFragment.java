@@ -20,6 +20,9 @@ import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 import com.am.betterme.databinding.PostDetailsFragmentBinding;
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener;
+import com.am.betterme.util.FullScreenHelper;
 
 public class PostDetailsFragment extends Fragment {
     private static final String ARG_POST_ID = "postId";
@@ -27,6 +30,7 @@ public class PostDetailsFragment extends Fragment {
 
     private String mPostId;
     private Post mPost;
+    private FullScreenHelper fullScreenHelper;
     private PostDetailsViewModel mViewModel;
     private PostDetailsFragmentBinding mLayout;
 
@@ -46,10 +50,49 @@ public class PostDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mLayout = PostDetailsFragmentBinding.inflate(inflater ,  container, false);
+        mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
         mLayout.setPost(mPost);
-        Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.imageView3);
+        if (mPost.isIs_video()) {
+            mLayout.youtubeView.setVisibility(View.VISIBLE);
+            mLayout.imageView3.setVisibility(View.INVISIBLE);
+            setupYoutubeView();
+        } else {
+            Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.imageView3);
+            mLayout.imageView3.setVisibility(View.VISIBLE);
+            mLayout.youtubeView.setVisibility(View.INVISIBLE);
+
+        }
         return mLayout.getRoot();
+    }
+
+    private void setupYoutubeView() {
+
+        getLifecycle().addObserver(mLayout.youtubeView);
+        //mToolbar , fab will be hidden and shown when FullScreen toggles
+//        fullScreenHelper = new FullScreenHelper(getContext(), mLayout.floatingActionButton, mLayout.textView2,mLayout.textView3,mLayout.textView4);
+
+        mLayout.youtubeView.initialize(
+                initializedYouTubePlayer ->
+                        initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
+                            @Override
+                            public void onReady() {
+                                String videoId = "pS-gbqbVd8c"; //Game of Thorns - Light of the Seven
+                                initializedYouTubePlayer.loadVideo(videoId, 0);
+                            }
+                        }), true);
+
+        mLayout.youtubeView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
+            @Override
+            public void onYouTubePlayerEnterFullScreen() {
+//                fullScreenHelper.enterFullScreen();
+
+            }
+
+            @Override
+            public void onYouTubePlayerExitFullScreen() {
+//                fullScreenHelper.exitFullScreen();
+            }
+        });
     }
 
     @Override

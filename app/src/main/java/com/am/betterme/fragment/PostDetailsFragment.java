@@ -69,7 +69,8 @@ public class PostDetailsFragment extends Fragment {
 
         getLifecycle().addObserver(mLayout.youtubeView);
         //mToolbar , fab will be hidden and shown when FullScreen toggles
-//        fullScreenHelper = new FullScreenHelper(getContext(), mLayout.floatingActionButton, mLayout.textView2,mLayout.textView3,mLayout.textView4);
+        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.floatingActionButton, mLayout.textView2, mLayout.textView3, mLayout.textView4);
+        getActivity().getLifecycle().addObserver(mLayout.youtubeView);
 
         mLayout.youtubeView.initialize(
                 initializedYouTubePlayer ->
@@ -84,13 +85,13 @@ public class PostDetailsFragment extends Fragment {
         mLayout.youtubeView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
             @Override
             public void onYouTubePlayerEnterFullScreen() {
-//                fullScreenHelper.enterFullScreen();
+                fullScreenHelper.enterFullScreen();
 
             }
 
             @Override
             public void onYouTubePlayerExitFullScreen() {
-//                fullScreenHelper.exitFullScreen();
+                fullScreenHelper.exitFullScreen();
             }
         });
     }

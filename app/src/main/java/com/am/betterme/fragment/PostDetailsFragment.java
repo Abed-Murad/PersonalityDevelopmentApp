@@ -1,9 +1,7 @@
 package com.am.betterme.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,20 +11,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.am.betterme.R;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 import com.am.betterme.databinding.PostDetailsFragmentBinding;
 import com.bumptech.glide.Glide;
-import com.orhanobut.logger.Logger;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener;
 import com.am.betterme.util.FullScreenHelper;
 
-import static com.am.betterme.util.FUNC.startShareIntent;
+import static com.am.betterme.util.FUNC.startShareIntentForArticle;
 
 public class PostDetailsFragment extends Fragment {
     private static final String ARG_POST_ID = "postId";
@@ -60,12 +55,14 @@ public class PostDetailsFragment extends Fragment {
             mLayout.youtubeView.setVisibility(View.VISIBLE);
             mLayout.postCoverImageView.setVisibility(View.INVISIBLE);
             setupYoutubeView();
+            mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(getContext(), mPost.getTitle(), mPost.getUrl()));
+
         } else {
             Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
             mLayout.postCoverImageView.setVisibility(View.VISIBLE);
             mLayout.youtubeView.setVisibility(View.INVISIBLE);
 
-            mLayout.shareFab.setOnClickListener(v -> startShareIntent(getContext(), mPost.getTitle(), mPost.getBody()));
+            mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(getContext(), mPost.getTitle(), mPost.getBody()));
         }
         return mLayout.getRoot();
     }

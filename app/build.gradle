@@ -46,6 +46,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.0.0'
     implementation 'com.google.firebase:firebase-firestore:17.1.5'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+
     /* Logger */
     implementation 'com.orhanobut:logger:2.2.0'
     //Youtube Player

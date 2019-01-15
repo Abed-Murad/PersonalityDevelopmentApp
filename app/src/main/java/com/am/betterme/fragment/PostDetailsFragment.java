@@ -26,6 +26,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.Abstract
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener;
 import com.am.betterme.util.FullScreenHelper;
 
+import static com.am.betterme.util.FUNC.startShareIntent;
+
 public class PostDetailsFragment extends Fragment {
     private static final String ARG_POST_ID = "postId";
     private static final String ARG_POST = "post";
@@ -59,24 +61,15 @@ public class PostDetailsFragment extends Fragment {
             mLayout.postCoverImageView.setVisibility(View.INVISIBLE);
             setupYoutubeView();
         } else {
-            Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.imageView3);
+            Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
             mLayout.postCoverImageView.setVisibility(View.VISIBLE);
             mLayout.youtubeView.setVisibility(View.INVISIBLE);
 
-            mLayout.shareFab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String shareBody = mPost.getBody() + "\n\n\nSubscribe to PewDiePie";
-                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                    sharingIntent.setType("text/plain");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
-                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
-                    startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_using)));
-                }
-            });
+            mLayout.shareFab.setOnClickListener(v -> startShareIntent(getContext(), mPost.getTitle(), mPost.getBody()));
         }
         return mLayout.getRoot();
     }
+
 
     private void setupYoutubeView() {
 

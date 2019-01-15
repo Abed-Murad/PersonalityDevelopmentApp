@@ -7,25 +7,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostsListViewModel;
 import com.am.betterme.databinding.PostsFragmentBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
-import com.google.api.LogDescriptor;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -34,7 +24,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.FragmentNavigator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -111,6 +100,6 @@ public class PostsFragment extends Fragment {
         });
         postsRecyclerView.setAdapter(mPostsAdapter);
     }
-//TODO: Create A Listener here to ne implemented by the main Activity so it can change the Fragment Data When ever this drawer button is clicked 
+//TODO: Create A Listener here to ne implemented by the main Activity so it can change the Fragment Data When ever this drawer button is clicked
 
 }

@@ -3,6 +3,7 @@ package com.am.betterme.fragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,13 +56,24 @@ public class PostDetailsFragment extends Fragment {
         mLayout.setPost(mPost);
         if (mPost.isIs_video()) {
             mLayout.youtubeView.setVisibility(View.VISIBLE);
-            mLayout.imageView3.setVisibility(View.INVISIBLE);
+            mLayout.postCoverImageView.setVisibility(View.INVISIBLE);
             setupYoutubeView();
         } else {
             Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.imageView3);
-            mLayout.imageView3.setVisibility(View.VISIBLE);
+            mLayout.postCoverImageView.setVisibility(View.VISIBLE);
             mLayout.youtubeView.setVisibility(View.INVISIBLE);
 
+            mLayout.shareFab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String shareBody = mPost.getBody() + "\n\n\nSubscribe to PewDiePie";
+                    Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                    sharingIntent.setType("text/plain");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+                    sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                    startActivity(Intent.createChooser(sharingIntent, getResources().getString(R.string.share_using)));
+                }
+            });
         }
         return mLayout.getRoot();
     }
@@ -70,7 +82,7 @@ public class PostDetailsFragment extends Fragment {
 
         getLifecycle().addObserver(mLayout.youtubeView);
         //mToolbar , fab will be hidden and shown when FullScreen toggles
-        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.floatingActionButton);
+        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.shareFab);
         getLifecycle().addObserver(mLayout.youtubeView);
 
         mLayout.youtubeView.initialize(

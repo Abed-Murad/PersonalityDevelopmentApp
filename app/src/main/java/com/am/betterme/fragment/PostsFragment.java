@@ -69,9 +69,9 @@ public class PostsFragment extends Fragment {
         return mLayout.getRoot();
     }
 
+    //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
         String[] array = {"Relationships", "Motivation", "Social Skills", "Goal Setting", "Habit Building", "Career", "Health", "Family"};
-
         TabLayout tabLayout = mLayout.tagsTabLayout;
         tabLayout.addTab(tabLayout.newTab());
         TextView tabOne = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
@@ -82,12 +82,14 @@ public class PostsFragment extends Fragment {
             tabLayout.addTab(tabLayout.newTab());
             TextView tab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
             tab.setText(array[i]);
+            tab.setTag(array[i]);
+            tab.setContentDescription(array[i]);
             tabLayout.getTabAt(i+1).setCustomView(tab);
         }
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(mContext, tab.getText(), Toast.LENGTH_SHORT).show();
+                //Change The RecyclerView Content From Here
             }
 
             @Override

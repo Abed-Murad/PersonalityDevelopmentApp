@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
@@ -27,6 +28,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import me.gujun.android.taggroup.TagGroup;
 
 public class PostsFragment extends Fragment {
 
@@ -67,38 +69,9 @@ public class PostsFragment extends Fragment {
 
     //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
-        String[] array = {"Relationships", "Motivation", "Social Skills", "Goal Setting", "Habit Building", "Career", "Health", "Family"};
-        TabLayout tabLayout = mLayout.tagsTabLayout;
-        tabLayout.addTab(tabLayout.newTab());
-        TextView tabOne = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
-        tabOne.setText("All");
-        tabLayout.getTabAt(0).setCustomView(tabOne);
-
-        for (int i = 0; i < array.length; i++) {
-            tabLayout.addTab(tabLayout.newTab());
-            TextView tab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
-            tab.setText(array[i]);
-            tab.setTag(array[i]);
-            tab.setContentDescription(array[i]);
-            tabLayout.getTabAt(i+1).setCustomView(tab);
-        }
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                //Change The RecyclerView Content From Here
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
+        String[] array = {"All","Relationships", "Motivation", "Social Skills", "Goal Setting", "Habit Building", "Career", "Health", "Family"};
+        mLayout.tagsTabLayout.setTags(array);
+        mLayout.tagsTabLayout.setOnTagClickListener(tag -> Toast.makeText(getActivity(), tag, Toast.LENGTH_SHORT).show());
     }
 
     @Override

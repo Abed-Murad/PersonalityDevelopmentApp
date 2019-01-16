@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import me.gujun.android.taggroup.TagGroup;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,14 @@ public class PostDetailsFragment extends Fragment {
             mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
             mLayout.youtubeView.setVisibility(View.VISIBLE);
             setupYoutubeView(mLayout);
+            String[] array = {"All","Relationships", "Motivation", "Social Skills", "Goal Setting", "Habit Building", "Career", "Health", "Family"};
+            mLayout.tagsTabLayout.setTags(array);
+            mLayout.tagsTabLayout.setOnTagClickListener(new TagGroup.OnTagClickListener() {
+                @Override
+                public void onTagClick(String tag) {
+                    Toast.makeText(mActivity, tag, Toast.LENGTH_SHORT).show();
+                }
+            });
             mLayout.setPost(mPost);
             return mLayout.getRoot();
 

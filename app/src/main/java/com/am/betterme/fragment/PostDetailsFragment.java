@@ -2,18 +2,14 @@ package com.am.betterme.fragment;
 
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 import com.am.betterme.databinding.PostDetailsFragmentBinding;
@@ -57,6 +53,7 @@ public class PostDetailsFragment extends Fragment {
             mLayout.youtubeView.setVisibility(View.VISIBLE);
             setupYoutubeView(mLayout);
             mLayout.setPost(mPost);
+            return mLayout.getRoot();
 
         } else {
             PostDetailsFragmentBinding mLayout;
@@ -65,16 +62,14 @@ public class PostDetailsFragment extends Fragment {
             mLayout.postCoverImageView.setVisibility(View.VISIBLE);
             mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(getContext(), mPost.getTitle(), mPost.getBody()));
             mLayout.setPost(mPost);
+            return mLayout.getRoot();
 
         }
-        return mLayout.getRoot();
     }
 
 
     private void setupYoutubeView(VideoDetailsFragmentBinding mLayout) {
-
-        getLifecycle().addObserver(mLayout.youtubeView);
-        //mToolbar , fab will be hidden and shown when FullScreen toggles
+        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.dateTextView, mLayout.titleTextView);
         getLifecycle().addObserver(mLayout.youtubeView);
 
         mLayout.youtubeView.initialize(
@@ -87,8 +82,10 @@ public class PostDetailsFragment extends Fragment {
                                 fullScreenHelper.enterFullScreen();
                             }
                         }), true);
+        mLayout.youtubeView.getPlayerUIController().showFullscreenButton(false);
 
-        mLayout.youtubeView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
+/*
+       mLayout.youtubeView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
             @Override
             public void onYouTubePlayerEnterFullScreen() {
                 fullScreenHelper.enterFullScreen();
@@ -100,6 +97,7 @@ public class PostDetailsFragment extends Fragment {
                 fullScreenHelper.exitFullScreen();
             }
         });
+*/
     }
 
     @Override

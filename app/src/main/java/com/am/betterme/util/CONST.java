@@ -1,6 +1,8 @@
 package com.am.betterme.util;
 
-public interface CONST {
-    String BASE_YOUTUBE_URL = "http://www.youtube.com/watch?v=";
+import java.util.ArrayList;
+import java.util.List;
 
+public  interface CONST {
+    String BASE_YOUTUBE_URL = "http://www.youtube.com/watch?v=";
 }

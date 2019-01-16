@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.model.Post;
@@ -17,6 +19,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -34,6 +39,8 @@ public class PostsFragment extends Fragment {
     private Context mContext;
     private PostsAdapter mPostsAdapter;
     private CollectionReference mPostRef = FirebaseFirestore.getInstance().collection("Posts");
+    private List<String> tagsList;
+
 
     public static PostsFragment newInstance() {
         return new PostsFragment();
@@ -63,18 +70,36 @@ public class PostsFragment extends Fragment {
     }
 
     private void setupTabLayout() {
+        String[] array = {"Relationships", "Motivation", "Social Skills", "Goal Setting", "Habit Building", "Career", "Health", "Family"};
+
         TabLayout tabLayout = mLayout.tagsTabLayout;
         tabLayout.addTab(tabLayout.newTab());
         TextView tabOne = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
         tabOne.setText("All");
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < array.length; i++) {
             tabLayout.addTab(tabLayout.newTab());
             TextView tab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.tab_tag, null);
-            tab.setText("Self Steam");
-            tabLayout.getTabAt(i).setCustomView(tab);
+            tab.setText(array[i]);
+            tabLayout.getTabAt(i+1).setCustomView(tab);
         }
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Toast.makeText(mContext, tab.getText(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 

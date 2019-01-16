@@ -20,6 +20,8 @@ import com.am.betterme.databinding.ActivityMainBinding;
 import com.mikepenz.aboutlibraries.Libs;
 import com.mikepenz.aboutlibraries.LibsBuilder;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ActivityMainBinding mLayout;

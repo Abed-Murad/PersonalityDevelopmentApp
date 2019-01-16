@@ -1,5 +1,6 @@
 package com.am.betterme.fragment;
 
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 import com.am.betterme.databinding.PostDetailsFragmentBinding;
+import com.am.betterme.databinding.VideoDetailsFragmentBinding;
 import com.bumptech.glide.Glide;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener;
@@ -31,7 +33,7 @@ public class PostDetailsFragment extends Fragment {
     private Post mPost;
     private FullScreenHelper fullScreenHelper;
     private PostDetailsViewModel mViewModel;
-    private PostDetailsFragmentBinding mLayout;
+    ViewDataBinding mLayout;
 
     public static PostDetailsFragment newInstance() {
         return new PostDetailsFragment();
@@ -49,30 +51,30 @@ public class PostDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
-        mLayout.setPost(mPost);
         if (mPost.isIs_video()) {
+            VideoDetailsFragmentBinding mLayout;
+            mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
             mLayout.youtubeView.setVisibility(View.VISIBLE);
-            mLayout.postCoverImageView.setVisibility(View.INVISIBLE);
-            setupYoutubeView();
-            mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(getContext(), mPost.getTitle(), mPost.getUrl()));
+            setupYoutubeView(mLayout);
+            mLayout.setPost(mPost);
 
         } else {
+            PostDetailsFragmentBinding mLayout;
+            mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
             Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
             mLayout.postCoverImageView.setVisibility(View.VISIBLE);
-            mLayout.youtubeView.setVisibility(View.INVISIBLE);
-
             mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(getContext(), mPost.getTitle(), mPost.getBody()));
+            mLayout.setPost(mPost);
+
         }
         return mLayout.getRoot();
     }
 
 
-    private void setupYoutubeView() {
+    private void setupYoutubeView(VideoDetailsFragmentBinding mLayout) {
 
         getLifecycle().addObserver(mLayout.youtubeView);
         //mToolbar , fab will be hidden and shown when FullScreen toggles
-        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.shareFab);
         getLifecycle().addObserver(mLayout.youtubeView);
 
         mLayout.youtubeView.initialize(

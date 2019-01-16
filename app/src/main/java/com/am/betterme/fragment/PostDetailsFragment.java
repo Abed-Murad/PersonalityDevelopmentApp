@@ -1,23 +1,26 @@
 package com.am.betterme.fragment;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
+
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 import com.am.betterme.databinding.PostDetailsFragmentBinding;
 import com.am.betterme.databinding.VideoDetailsFragmentBinding;
 import com.bumptech.glide.Glide;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
-import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.YouTubePlayerFullScreenListener;
-import com.am.betterme.util.FullScreenHelper;
 
 import static com.am.betterme.util.FUNC.startShareIntentForArticle;
 
@@ -27,9 +30,8 @@ public class PostDetailsFragment extends Fragment {
 
     private String mPostId;
     private Post mPost;
-    private FullScreenHelper fullScreenHelper;
     private PostDetailsViewModel mViewModel;
-    ViewDataBinding mLayout;
+    private AppCompatActivity mActivity;
 
     public static PostDetailsFragment newInstance() {
         return new PostDetailsFragment();
@@ -38,6 +40,7 @@ public class PostDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = (AppCompatActivity) getActivity();
         if (getArguments() != null) {
             mPostId = getArguments().getString(ARG_POST_ID);
             mPost = getArguments().getParcelable(ARG_POST);
@@ -58,9 +61,9 @@ public class PostDetailsFragment extends Fragment {
         } else {
             PostDetailsFragmentBinding mLayout;
             mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
-            Glide.with(getContext()).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
+            Glide.with(mActivity).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
             mLayout.postCoverImageView.setVisibility(View.VISIBLE);
-            mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(getContext(), mPost.getTitle(), mPost.getBody()));
+            mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(mActivity, mPost.getTitle(), mPost.getBody()));
             mLayout.setPost(mPost);
             return mLayout.getRoot();
 
@@ -69,9 +72,7 @@ public class PostDetailsFragment extends Fragment {
 
 
     private void setupYoutubeView(VideoDetailsFragmentBinding mLayout) {
-        fullScreenHelper = new FullScreenHelper(getActivity(), mLayout.dateTextView, mLayout.titleTextView);
         getLifecycle().addObserver(mLayout.youtubeView);
-
         mLayout.youtubeView.initialize(
                 initializedYouTubePlayer ->
                         initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
@@ -82,28 +83,13 @@ public class PostDetailsFragment extends Fragment {
                             }
                         }), true);
         mLayout.youtubeView.getPlayerUIController().showFullscreenButton(false);
-
-/*
-       mLayout.youtubeView.addFullScreenListener(new YouTubePlayerFullScreenListener() {
-            @Override
-            public void onYouTubePlayerEnterFullScreen() {
-                fullScreenHelper.enterFullScreen();
-
-            }
-
-            @Override
-            public void onYouTubePlayerExitFullScreen() {
-                fullScreenHelper.exitFullScreen();
-            }
-        });
-*/
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PostDetailsViewModel.class);
-        Toast.makeText(getContext(), mPostId, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mActivity, mPostId, Toast.LENGTH_SHORT).show();
         // TODO: Use the ViewModel
     }
 

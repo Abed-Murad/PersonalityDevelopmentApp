@@ -77,9 +77,8 @@ public class PostDetailsFragment extends Fragment {
                         initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                             @Override
                             public void onReady() {
-                                String videoId = "pS-gbqbVd8c"; //Game of Thorns - Light of the Seven
+                                String videoId = "wA38GCX4Tb0"; //Game of Thrones | Season 8 | Official Tease
                                 initializedYouTubePlayer.loadVideo(videoId, 0);
-                                fullScreenHelper.enterFullScreen();
                             }
                         }), true);
         mLayout.youtubeView.getPlayerUIController().showFullscreenButton(false);

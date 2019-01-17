@@ -13,6 +13,7 @@ class MyJobService  extends JobService {
     public boolean onStartJob(JobParameters jobParameters) {
         Log.d(TAG, "Performing long running task in scheduled job");
         // TODO(developer): add long running task here.
+        // TODO: Use WorkManger
         return false;
     }
 

@@ -22,7 +22,6 @@ public class AMApplication extends Application {
                 .methodOffset(0)        // (Optional) Hides internal method calls up to offset. Default 5
                 .tag("am_logs")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build();
-
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
     }
 }

@@ -1,27 +1,21 @@
 package com.am.betterme.adapter;
 
 import android.content.Context;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import com.am.betterme.data.model.Post;
 import com.am.betterme.databinding.CardPostBinding;
 import com.bumptech.glide.Glide;
 
-import org.ocpsoft.prettytime.PrettyTime;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> {
-    private static final int TYPE_ARTICLE = 1;
-    private static final int TYPE_VIDEO = 2;
 
     private Context mContext;
     private List<Post> mPostList;
@@ -32,8 +26,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
     public PostsAdapter(Context context, OnArticleClickListener articleClickListener) {
         this.mContext = context;
         this.mPostList = new ArrayList<>();
-        this.mArticleClickListener = articleClickListener;
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mArticleClickListener = articleClickListener;
     }
 
     @NonNull
@@ -46,17 +40,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
     @Override
     public void onBindViewHolder(@NonNull PostHolder postHolder, final int position) {
         final Post post = getItem(position);
-
-        if (post.isIs_video()) {
-            postHolder.mBinding.youtubeIconImageView.setVisibility(View.VISIBLE);
-
-        } else {
-            postHolder.mBinding.youtubeIconImageView.setVisibility(View.INVISIBLE);
-
-        }
-        postHolder.bindData(post);
-
-
+        postHolder.bind(post);
     }
 
 
@@ -80,32 +64,32 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
         return mPostList.get(position);
     }
 
-    public void SetOnItemClickListener(final OnArticleClickListener mItemClickListener) {
-        this.mArticleClickListener = mItemClickListener;
-    }
-
-    public interface OnArticleClickListener {
-        void onItemClick(View view, int position, Post model);
-    }
-
     class PostHolder extends RecyclerView.ViewHolder {
         private final CardPostBinding mBinding;
 
         PostHolder(CardPostBinding itemView) {
             super(itemView.getRoot());
+
             this.mBinding = itemView;
             mBinding.getRoot().setOnClickListener(view ->
-                    mArticleClickListener.onItemClick(mBinding.getRoot(),
-                            getAdapterPosition(), getItem(getAdapterPosition())));
+                    mArticleClickListener.onItemClick(
+                              mBinding.getRoot()
+                            , getAdapterPosition()
+                            , getItem(getAdapterPosition()))
+            );
 
         }
 
-        private void bindData(Post post) {
+        private void bind(Post post) {
+            mBinding.youtubeIconImageView.setVisibility(post.isIs_video() ? View.VISIBLE : View.INVISIBLE);
             mBinding.setPost(post);
             Glide.with(mContext).load(post.getImage_url()).into(mBinding.imageView2);
             mBinding.executePendingBindings();
         }
     }
 
+    public interface OnArticleClickListener {
+        void onItemClick(View view, int position, Post model);
+    }
 
 }

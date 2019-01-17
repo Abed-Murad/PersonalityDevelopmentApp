@@ -1,16 +1,6 @@
 package com.am.betterme.fragment;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import me.gujun.android.taggroup.TagGroup;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,82 +13,85 @@ import com.am.betterme.databinding.VideoDetailsFragmentBinding;
 import com.bumptech.glide.Glide;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+
+import static com.am.betterme.util.CONST.TAGS_ARRAY;
+import static com.am.betterme.util.CONST.TEST_VIDEO_ID;
 import static com.am.betterme.util.FUNC.startShareIntentForArticle;
 
 public class PostDetailsFragment extends Fragment {
-    private static final String ARG_POST_ID = "postId";
     private static final String ARG_POST = "post";
 
-    private String mPostId;
-    private Post mPost;
     private PostDetailsViewModel mViewModel;
-    private AppCompatActivity mActivity;
 
-    public static PostDetailsFragment newInstance() {
-        return new PostDetailsFragment();
-    }
+    private Post mPost;
+    private AppCompatActivity mActivity;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = (AppCompatActivity) getActivity();
-        if (getArguments() != null) {
-            mPostId = getArguments().getString(ARG_POST_ID);
-            mPost = getArguments().getParcelable(ARG_POST);
-        }
+        if (getArguments() != null) mPost = getArguments().getParcelable(ARG_POST);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         if (mPost.isIs_video()) {
-            VideoDetailsFragmentBinding mLayout;
-            mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
-            mLayout.youtubeView.setVisibility(View.VISIBLE);
-            setupYoutubeView(mLayout);
-            String[] array = {"All","Relationships", "Motivation", "Social Skills", "Goal Setting", "Habit Building", "Career", "Health", "Family"};
-            mLayout.tagsTabLayout.setTags(array);
-            mLayout.tagsTabLayout.setOnTagClickListener(new TagGroup.OnTagClickListener() {
-                @Override
-                public void onTagClick(String tag) {
-                    Toast.makeText(mActivity, tag, Toast.LENGTH_SHORT).show();
-                }
-            });
-            mLayout.setPost(mPost);
-            return mLayout.getRoot();
+            VideoDetailsFragmentBinding mVideoLayout = setupVideoLayout(inflater, container);
+            return mVideoLayout.getRoot();
 
         } else {
-            PostDetailsFragmentBinding mLayout;
-            mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
-            Glide.with(mActivity).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
-            mLayout.postCoverImageView.setVisibility(View.VISIBLE);
-            mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(mActivity, mPost.getTitle(), mPost.getBody()));
-            mLayout.setPost(mPost);
-            return mLayout.getRoot();
+            PostDetailsFragmentBinding mPostLayout = setupPostLayout(inflater, container);
+            return mPostLayout.getRoot();
 
         }
     }
 
+    private PostDetailsFragmentBinding setupPostLayout(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        PostDetailsFragmentBinding mLayout;
+        mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
+        Glide.with(mActivity).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
+        mLayout.postCoverImageView.setVisibility(View.VISIBLE);
+        mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(mActivity, mPost.getTitle(), mPost.getBody()));
+        mLayout.setPost(mPost);
+        return mLayout;
+    }
+
+    private VideoDetailsFragmentBinding setupVideoLayout(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        VideoDetailsFragmentBinding mLayout;
+        mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
+        mLayout.youtubeView.setVisibility(View.VISIBLE);
+        setupYoutubeView(mLayout);
+        mLayout.tagsTabLayout.setTags(TAGS_ARRAY);
+        mLayout.tagsTabLayout.setOnTagClickListener(tag -> Toast.makeText(mActivity, tag, Toast.LENGTH_SHORT).show());
+        mLayout.setPost(mPost);
+        return mLayout;
+    }
 
     private void setupYoutubeView(VideoDetailsFragmentBinding mLayout) {
+
         getLifecycle().addObserver(mLayout.youtubeView);
+        mLayout.youtubeView.getPlayerUIController().showFullscreenButton(false);
+
         mLayout.youtubeView.initialize(
                 initializedYouTubePlayer ->
                         initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                             @Override
                             public void onReady() {
-                                String videoId = "wA38GCX4Tb0"; //Game of Thrones | Season 8 | Official Tease
-                                initializedYouTubePlayer.loadVideo(videoId, 0);
+                                initializedYouTubePlayer.loadVideo(TEST_VIDEO_ID, 0);
                             }
                         }), true);
-        mLayout.youtubeView.getPlayerUIController().showFullscreenButton(false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PostDetailsViewModel.class);
-        Toast.makeText(mActivity, mPostId, Toast.LENGTH_SHORT).show();
         // TODO: Use the ViewModel
     }
 

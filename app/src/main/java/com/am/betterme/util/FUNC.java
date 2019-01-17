@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.am.betterme.R;
+import com.mikepenz.aboutlibraries.Libs;
+import com.mikepenz.aboutlibraries.LibsBuilder;
 
 import org.ocpsoft.prettytime.PrettyTime;
 
@@ -37,5 +39,18 @@ public class FUNC {
         sharingIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
         context.startActivity(Intent.createChooser(sharingIntent, context.getResources().getString(R.string.share_using)));
+    }
+
+    public static void startRateUsActivity(Context context) {
+        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + context.getPackageName())));
+    }
+    public static void startAboutActivity(Context context) {
+        new LibsBuilder()
+                .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
+                .withAboutIconShown(true)
+                .withAboutVersionShown(true)
+                .withAboutDescription(context.getString(R.string.aboutLibraries_description_text))
+                .withFields(R.string.class.getFields())
+                .start(context);
     }
 }

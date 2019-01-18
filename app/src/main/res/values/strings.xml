@@ -2,37 +2,16 @@
     <string name="app_name">BetterMe</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="nav_header_title">Better Me</string>
+    <string name="nav_header_subtitle">User@email.com</string>
+    <string name="nav_header_desc">Username</string>
     <string name="action_search">search</string>
-    <string name="default_notification_channel_id">12546418</string>
+    <string name="default_notification_channel_id">123456789</string>
 
 
 
 
 
     <!--About Me Library-->
-    <string name="aboutLibraries_description_text">
-        This is a small sample which can be set in the about my app description file.<br/><b>
-        You can style this with html markup :D</b></string>
-    <string name="textviewsas">What is your brand? Is it a logo or corporate ID as characterised in your letterheads, brochures and business cards?
-        Or does it represent the very essence of your business?\n\n
-
-A good brand image sums up in a heartbeat just who you are, what you do, and most importantly, why it matters. It’s a standard that repeatedly confers unique benefits
-        and reminds people why they like and trust you without having even to think about it.\n\n
-
-The mistake many companies make is to launch a new image without properly considering the commercial objectives. Then, relying on pretty pictures,
-        friendly photographs and clichéd images they tell the world “Hey! We can’t tell you why we’re different but buy from us anyway – please”.\n\n
-
-Sure, striking visuals will look great at first; they may even be unlike anything else out there. But is it you? Is it, in the minds of your public, synonymous with your business and its innate qualities?
-        If not, maybe it’s time to take a step back and consider how effective those brand images that speak so universally about you really are.\n\n
-
-My years as a design professional have taught me that good design plays an indispensable role in establishing a successful brand.   But it’s by no means the only skill needed,
-        nor is it the first. Designers who ignore questions like: “What is your business and its market?”, “Who are your customers and your competition?”, “Why are you unique?”, and, “What do people see and feel when they think about you?” are missing an essential step in communicating your identity.\n\n
-
-A great brand materialises from the way others perceive your business, products and services. Finding your business’s true character provides the powerful springboard with which to launch focused creative development. After all,
-        your brand reflects that specialness that sets you apart from your rivals and defines you in the minds of your customers. It’s worth thinking about first. Isn’t it?</string>
     <string name="share_using">Share Using</string>
 </resources>

@@ -2,7 +2,6 @@
 <layout>
 
     <data>
-
         <variable
             name="post"
             type="com.am.betterme.data.model.Post" />
@@ -75,7 +74,6 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
-                android:text="@string/textviewsas"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"

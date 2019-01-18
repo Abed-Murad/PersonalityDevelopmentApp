@@ -2,7 +2,6 @@
 <layout >
 
     <data>
-
         <variable
             name="post"
             type="com.am.betterme.data.model.Post" />
@@ -18,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".fragment.PostDetailsFragment">
-
 
             <LinearLayout
                 android:id="@+id/youtubeViewLayout"

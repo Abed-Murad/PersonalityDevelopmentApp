@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import static com.am.betterme.util.CONST.TAGS_ARRAY;
 import static com.am.betterme.util.CONST.TEST_VIDEO_ID;
-import static com.am.betterme.util.FUNC.startShareIntentForArticle;
+import static com.am.betterme.util.FUNC.shareArticle;
 
 public class PostDetailsFragment extends Fragment {
     private static final String ARG_POST = "post";
@@ -53,18 +53,16 @@ public class PostDetailsFragment extends Fragment {
     }
 
     private PostDetailsFragmentBinding setupPostLayout(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        PostDetailsFragmentBinding mLayout;
-        mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
+        PostDetailsFragmentBinding mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
         Glide.with(mActivity).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
         mLayout.postCoverImageView.setVisibility(View.VISIBLE);
-        mLayout.shareFab.setOnClickListener(v -> startShareIntentForArticle(mActivity, mPost.getTitle(), mPost.getBody()));
+        mLayout.shareFab.setOnClickListener(v -> shareArticle(mActivity, mPost.getTitle(), mPost.getBody()));
         mLayout.setPost(mPost);
         return mLayout;
     }
 
     private VideoDetailsFragmentBinding setupVideoLayout(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
-        VideoDetailsFragmentBinding mLayout;
-        mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
+        VideoDetailsFragmentBinding mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
         mLayout.youtubeView.setVisibility(View.VISIBLE);
         setupYoutubeView(mLayout);
         mLayout.tagsTabLayout.setTags(TAGS_ARRAY);

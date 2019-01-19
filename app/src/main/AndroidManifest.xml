@@ -27,6 +27,7 @@
 
 
         <activity android:name=".activity.SearchResultsActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />

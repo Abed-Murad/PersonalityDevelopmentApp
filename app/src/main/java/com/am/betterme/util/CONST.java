@@ -7,6 +7,6 @@ public interface CONST {
     String TEST_VIDEO_ID = "wA38GCX4Tb0";
     String POSTS_KEY = "Posts";
 
-    String[] TAGS_ARRAY = {"All", "Relationships", "Motivation", "Social Skills"
-            ,"Goal Setting", "Habit Building", "Career", "Health", "Family"};
+    String[] TAGS_ARRAY = {"All", "Relationships", "Motivation", "Social Skills", "Career"
+            , "Goal Setting", "Habit Building", "Health", "Family"};
 }

@@ -1,20 +1,19 @@
 package com.am.betterme.activity;
 
 import android.os.Bundle;
-
-import com.am.betterme.databinding.AppBarMainBinding;
-import com.google.android.material.navigation.NavigationView;
-import androidx.core.view.GravityCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.am.betterme.R;
 import com.am.betterme.databinding.ActivityMainBinding;
+import com.am.betterme.databinding.ContentMainBinding;
+import com.google.android.material.navigation.NavigationView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 
 import static com.am.betterme.util.FUNC.startAboutActivity;
 import static com.am.betterme.util.FUNC.startRateUsActivity;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        AppBarMainBinding mCoordinatorLayout = mLayout.includeLayout;
+        ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);
         setupDrawer(mCoordinatorLayout.toolbar);
     }

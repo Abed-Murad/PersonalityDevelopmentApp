@@ -33,10 +33,10 @@ public class FUNC {
     }
     public static void startAboutActivity(Context context) {
         new LibsBuilder()
-                .withActivityStyle(Libs.ActivityStyle.about_libraries_description)
+                .withActivityStyle(Libs.ActivityStyle.LIGHT_DARK_TOOLBAR)
                 .withAboutIconShown(true)
                 .withAboutVersionShown(true)
-                .withAboutDescription(context.getString(R.string.About_Libraries_Description))
+                .withAboutDescription(context.getString(R.string.about_libraries_description))
                 .withFields(R.string.class.getFields())
                 .start(context);
     }

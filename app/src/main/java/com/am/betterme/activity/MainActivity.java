@@ -2,9 +2,11 @@ package com.am.betterme.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.am.betterme.R;
 import com.am.betterme.databinding.ActivityMainBinding;
@@ -65,14 +67,30 @@ public class MainActivity extends AppCompatActivity
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-
-
-
-
-
         return true;
     }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            showResults(query);
+        }
+
+    }
+
+    private void showResults(String query) {
+        Toast.makeText(this, query, Toast.LENGTH_SHORT).show();
+    }
+
+
 
     @Override
     public boolean onSearchRequested() {

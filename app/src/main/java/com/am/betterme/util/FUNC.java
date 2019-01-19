@@ -16,8 +16,8 @@ import java.util.Date;
 import static com.am.betterme.util.CONST.BASE_YOUTUBE_URL;
 
 public class FUNC {
-    private static PrettyTime prettyTime = new PrettyTime();
 
+    private static PrettyTime prettyTime = new PrettyTime();
 
     public static void shareArticle(Context context, String title, String body) {
         String shareBody = title + "\n\n" + body + "\n\n\nSubscribe to PewDiePie";

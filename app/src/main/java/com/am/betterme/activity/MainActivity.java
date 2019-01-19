@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);
+        onSearchRequested();
         setupDrawer(mCoordinatorLayout.toolbar);
     }
 
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity
         mLayout.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 }

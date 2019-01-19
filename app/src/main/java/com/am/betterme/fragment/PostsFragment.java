@@ -35,6 +35,8 @@ public class PostsFragment extends Fragment {
     private Context mContext;
     private PostsAdapter mPostsAdapter;
     private CollectionReference mPostRef = FirebaseFirestore.getInstance().collection(POSTS_KEY);
+    String bb = "";
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class PostsFragment extends Fragment {
         mLayout = PostsFragmentBinding.inflate(inflater, container, false);
         setupRecyclerView();
         setupTabLayout();
+
         return mLayout.getRoot();
     }
 
@@ -62,6 +65,8 @@ public class PostsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PostsListViewModel.class);
         // TODO: Use the ViewModel
+        Toast.makeText(mContext, bb, Toast.LENGTH_SHORT).show();
+
 
     }
 

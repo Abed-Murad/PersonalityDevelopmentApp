@@ -90,13 +90,18 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+
         int id = item.getItemId();
         switch (id) {
             case R.id.navAll:
+                //TODO: Send Arg to Posts Fragment
                 break;
             case R.id.navArticles:
+                //TODO: Send Arg to Posts Fragment
                 break;
             case R.id.navVideos:
+                //TODO: Send Arg to Posts Fragment
                 break;
             case R.id.navRateUs:
                 startRateUsActivity(this);
@@ -108,7 +113,6 @@ public class MainActivity extends AppCompatActivity
         mLayout.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

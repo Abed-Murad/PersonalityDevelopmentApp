@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import static com.am.betterme.util.CONST.POSTS_KEY;
 import static com.am.betterme.util.CONST.TAGS_ARRAY;
 
@@ -73,6 +74,10 @@ public class PostsFragment extends Fragment {
             Navigation.findNavController(view).navigate(action);
         });
         mLayout.postsRecyclerView.setAdapter(mPostsAdapter);
+        getAllPosts();
+    }
+
+    private void getAllPosts() {
         mPostRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
@@ -83,7 +88,33 @@ public class PostsFragment extends Fragment {
             }
         });
     }
+
+    private void getVideosOnly() {
+
+        mPostRef.whereEqualTo("is_video", true).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Post> postList = task.getResult().toObjects(Post.class);
+                mPostsAdapter.addAll(postList);
+
+            } else {
+                Logger.e("Error getting documents.", task.getException());
+            }
+        });
+    }
+
+    private void getArticlesOnly() {
+        mPostRef.whereEqualTo("is_video", false).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                List<Post> postList = task.getResult().toObjects(Post.class);
+                mPostsAdapter.addAll(postList);
+
+            } else {
+                Logger.e("Error getting documents.", task.getException());
+            }
+        });
+    }
+
+
 //TODO: Create A Listener here to ne implemented by the main Activity so it can change the Fragment Data When ever this drawer button is clicked
-//TODO: mPostRef.whereEqualTo("is_video", true).get().addOnCompleteListener(task -> {
 
 }

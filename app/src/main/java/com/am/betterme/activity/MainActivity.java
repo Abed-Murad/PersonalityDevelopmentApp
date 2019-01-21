@@ -17,6 +17,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 
 import static com.am.betterme.util.FUNC.startAboutActivity;
 import static com.am.betterme.util.FUNC.startRateUsActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);
         setupDrawer(mCoordinatorLayout.toolbar);
+        Navigation.findNavController(this, R.id.navHostFragment).setGraph(R.navigation.nav_graph, null);
     }
 
     private void setupDrawer(Toolbar toolbar) {
@@ -60,7 +62,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         // Inflate the menu; this adds items to the action bar if it is present.
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();

@@ -42,6 +42,7 @@ public class PostsFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
+
     }
 
     @Override
@@ -79,7 +80,7 @@ public class PostsFragment extends Fragment {
             Navigation.findNavController(view).navigate(action);
         });
         mLayout.postsRecyclerView.setAdapter(mPostsAdapter);
-        getAllPosts();
+        getVideosOnly();
     }
 
     private void getAllPosts() {

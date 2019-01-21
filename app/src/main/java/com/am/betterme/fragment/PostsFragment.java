@@ -80,7 +80,7 @@ public class PostsFragment extends Fragment {
             Navigation.findNavController(view).navigate(action);
         });
         mLayout.postsRecyclerView.setAdapter(mPostsAdapter);
-        getVideosOnly();
+        getAllPosts();
     }
 
     private void getAllPosts() {

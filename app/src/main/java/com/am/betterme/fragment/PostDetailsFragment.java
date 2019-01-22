@@ -1,6 +1,8 @@
 package com.am.betterme.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +59,11 @@ public class PostDetailsFragment extends Fragment {
         Glide.with(mActivity).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
         mLayout.postCoverImageView.setVisibility(View.VISIBLE);
         mLayout.shareFab.setOnClickListener(v -> shareArticle(mActivity, mPost.getTitle(), mPost.getBody()));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mLayout.bodyTextView.setText(Html.fromHtml(mPost.getBody(), Html.FROM_HTML_MODE_COMPACT));
+        } else {
+            mLayout.bodyTextView.setText(Html.fromHtml(mPost.getBody()));
+        }
         mLayout.setPost(mPost);
         return mLayout;
     }

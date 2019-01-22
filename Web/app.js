@@ -1,44 +1,58 @@
-  var config = {
+var config = {
     apiKey: "AIzaSyB8lTeuzyjP88hQ8SKfONNBky27h7TMI1c",
     authDomain: "myfeed-dccdb.firebaseapp.com",
     databaseURL: "https://myfeed-dccdb.firebaseio.com",
     projectId: "myfeed-dccdb",
     storageBucket: "myfeed-dccdb.appspot.com",
     messagingSenderId: "107769501297"
-  };
-  firebase.initializeApp(config);
-  var firestore = firebase.firestore();
+};
+firebase.initializeApp(config);
+var firestore = firebase.firestore();
 
-  const docRef = firestore.doc("sample/Posts");
 
-  const saveButton = document.getElementById("saveButton");
-  
-  const urlField = document.getElementById("urlField");
-  //const imageUrlField = document.getElementById("imageUrlField");
-  const titleField = document.getElementById("titleField");
-  const bodyField = document.getElementById("bodyField");
-  const isVideoCheckBox = document.getElementById("isVideoCheckBox");
+const docRef = firestore.doc("sample/Posts");
 
-  saveButton.addEventListener("click" , function(){
-    const url = urlField.value ; 
-   // const imageUrlField = imageUrlField.value ; 
-    const titleField = titleField.value ; 
-    const bodyField = bodyField.value ; 
+const urlField = document.getElementById("urlField");
+const imageUrlField = document.getElementById("imageUrlField");
+const titleField = document.getElementById("titleField");
+const bodyField = document.getElementById("bodyField");
+const isVideoCheckBox = document.getElementById("isVideoCheckBox");
 
-     // console.log(isVideoCheckBox.checked + "");
-      console.log(url);
-    //  console.log(imageUrlField);
-      console.log(titleField);
-      console.log(bodyField);
-      console.log(url);
+const saveButton = document.getElementById("saveButton");
+
+saveButton.addEventListener("click", function () {
+
+    console.log("clicked");
+
+
+    let url = urlField.value;
+    let imageUrl = imageUrlField.value;
+    let title = titleField.value;
+    let body = bodyField.value;
+    let isVideoChecked = isVideoCheckBox.checked;
+    let timestamp = firebase.firestore.FieldValue.serverTimestamp();
+    let tags = ["tag1", "tag2", "tag2"];
+
+    console.log(url);
+    console.log(imageUrl);
+    console.log(title);
+    console.log(body);
+    console.log(timestamp);
+    console.log(isVideoChecked);
+    console.log(tags);
 
     docRef.set({
-      not:imageUrlField
+        url: url,
+        imageUrl: imageUrl,
+        title: title,
+        body: body,
+        isVideo: isVideoChecked,
+        date: timestamp,
+        tags: tags
 
-
-    }).then( function(){
-      console.log("status Saved!");
-    }).catch(function(error){
-      console.log("Got an error: "+  error);
+    }).then(function () {
+        console.log("status Saved!");
+    }).catch(function (error) {
+        console.log("Got an error: " + error);
     })
-  });
+});

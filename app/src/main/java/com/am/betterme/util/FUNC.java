@@ -43,7 +43,7 @@ public class FUNC {
     }
 
     public static void startBugReportActivity(Context context) {
-        IssueReporterLauncher.forTarget("HeinrichReimer", "android-issue-reporter")
+        IssueReporterLauncher.forTarget("Abed-Murad", "PersonalityDevelopmentApp")
                 // [Optional] Auth token to open issues if users don't have a GitHub account
                 // You can register a bot account on GitHub and copy ist OAuth2 token here.
                 // (See #how-to-create-a-bot-key for further information.)

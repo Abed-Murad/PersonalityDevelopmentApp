@@ -28,6 +28,10 @@
                 android:id="@+id/navAbout"
                 android:icon="@drawable/ic_menu_send"
                 android:title="About" />
+            <item
+                android:id="@+id/navBugReport"
+                android:icon="@drawable/air_ic_expand_more"
+                android:title="Report A Bug" />
         </menu>
     </item>
 

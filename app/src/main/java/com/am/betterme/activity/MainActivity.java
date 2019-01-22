@@ -20,6 +20,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import static com.am.betterme.util.FUNC.startAboutActivity;
+import static com.am.betterme.util.FUNC.startBugReportActivity;
 import static com.am.betterme.util.FUNC.startRateUsActivity;
 
 public class MainActivity extends AppCompatActivity
@@ -109,6 +110,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.navAbout:
                 startAboutActivity(this);
+                break;
+                case R.id.navBugReport:
+                    startBugReportActivity(this);
                 break;
         }
         mLayout.drawerLayout.closeDrawer(GravityCompat.START);

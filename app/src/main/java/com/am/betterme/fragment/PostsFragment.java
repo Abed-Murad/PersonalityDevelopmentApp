@@ -56,6 +56,7 @@ public class PostsFragment extends Fragment {
 
     //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
+
     }
 
     @Override

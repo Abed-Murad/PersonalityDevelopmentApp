@@ -54,6 +54,4 @@ public class FUNC {
     public static String getPrettyDate(Date date) {
         return prettyTime.format(date);
     }
-
-
 }

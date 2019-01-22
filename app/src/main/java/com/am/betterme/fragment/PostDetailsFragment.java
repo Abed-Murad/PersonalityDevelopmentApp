@@ -1,18 +1,25 @@
 package com.am.betterme.fragment;
 
 import android.os.Build;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.am.betterme.R;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostDetailsViewModel;
 import com.am.betterme.databinding.PostDetailsFragmentBinding;
 import com.am.betterme.databinding.VideoDetailsFragmentBinding;
 import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
 import com.pierfrancescosoffritti.androidyoutubeplayer.player.listeners.AbstractYouTubePlayerListener;
 
 import androidx.annotation.NonNull;

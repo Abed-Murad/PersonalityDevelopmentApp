@@ -9,4 +9,14 @@ public interface CONST {
 
     String[] TAGS_ARRAY = {"All", "Relationships", "Motivation", "Social Skills", "Career"
             , "Goal Setting", "Habit Building", "Health", "Family"};
+
+    int ALL = 0;
+    int RELATIONSHIPS = 1;
+    int MOTIVATION = 2;
+    int SOCIAL_SKILLS= 3;
+    int CAREER = 4;
+    int GOAL_SETTING = 5;
+    int HABIT_BUILDING = 6;
+    int HEALTH = 7;
+    int FAMILY = 8;
 }

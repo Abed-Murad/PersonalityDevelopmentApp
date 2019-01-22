@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.am.betterme.R;
 import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostsListViewModel;
@@ -26,7 +28,17 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import static com.am.betterme.util.CONST.ALL;
+import static com.am.betterme.util.CONST.CAREER;
+import static com.am.betterme.util.CONST.FAMILY;
+import static com.am.betterme.util.CONST.GOAL_SETTING;
+import static com.am.betterme.util.CONST.HABIT_BUILDING;
+import static com.am.betterme.util.CONST.HEALTH;
+import static com.am.betterme.util.CONST.MOTIVATION;
 import static com.am.betterme.util.CONST.POSTS_KEY;
+import static com.am.betterme.util.CONST.RELATIONSHIPS;
+import static com.am.betterme.util.CONST.SOCIAL_SKILLS;
+import static com.am.betterme.util.CONST.TAGS_ARRAY;
 
 public class PostsFragment extends Fragment {
 
@@ -57,20 +69,52 @@ public class PostsFragment extends Fragment {
 
     //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
-        mLayout.tagsTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        for (int i = 0; i < TAGS_ARRAY.length; i++) {
+            TextView customTab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.custom_tab_layout, null);//get custom view
+            customTab.setText(TAGS_ARRAY[i]);//set text over view
+            TabLayout.Tab tab = mLayout.tagsTabLayout.getTabAt(i);//get tab via position
+            if (tab != null)
+                tab.setCustomView(customTab);//set custom view
+        }
+        mLayout.tagsTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int tabPosition = tab.getPosition();
+                Toast.makeText(mContext, tabPosition + "", Toast.LENGTH_SHORT).show();
+                getPostsWithTag(tabPosition);
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    private void getPostsWithTag(int tabPosition) {
+        switch (tabPosition) {
+            case ALL:
+                break;
+            case RELATIONSHIPS:
+                break;
+            case MOTIVATION:
+                break;
+            case SOCIAL_SKILLS:
+                break;
+            case CAREER:
+                break;
+            case GOAL_SETTING:
+                break;
+            case HABIT_BUILDING:
+                break;
+            case HEALTH:
+                break;
+            case FAMILY:
+                break;
+        }
     }
 
     @Override
@@ -78,9 +122,6 @@ public class PostsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(PostsListViewModel.class);
         // TODO: Use the ViewModel
-        Toast.makeText(mContext, bb, Toast.LENGTH_SHORT).show();
-
-
     }
 
 

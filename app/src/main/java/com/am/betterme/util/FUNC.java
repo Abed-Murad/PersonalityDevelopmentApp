@@ -14,6 +14,8 @@ import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
 
+import androidx.annotation.StyleRes;
+
 import static com.am.betterme.util.CONST.BASE_YOUTUBE_URL;
 
 public class FUNC {

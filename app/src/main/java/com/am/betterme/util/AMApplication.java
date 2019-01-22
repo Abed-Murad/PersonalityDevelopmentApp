@@ -2,6 +2,7 @@ package com.am.betterme.util;
 
 import android.app.Application;
 
+import com.marcoscg.ratedialog.RateDialog;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;

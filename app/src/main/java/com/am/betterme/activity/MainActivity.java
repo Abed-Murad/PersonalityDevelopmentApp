@@ -10,6 +10,7 @@ import com.am.betterme.R;
 import com.am.betterme.databinding.ActivityMainBinding;
 import com.am.betterme.databinding.ContentMainBinding;
 import com.google.android.material.navigation.NavigationView;
+import com.marcoscg.ratedialog.RateDialog;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        RateDialog.with(this, 2, 4); // daysUntilPrompt, launchesUntilPrompt
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);

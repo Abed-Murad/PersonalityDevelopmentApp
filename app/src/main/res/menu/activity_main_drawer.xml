@@ -22,11 +22,11 @@
         <menu>
             <item
                 android:id="@+id/navRateUs"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_rate_review"
                 android:title="Rate Us" />
             <item
                 android:id="@+id/navAbout"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_info"
                 android:title="About" />
             <item
                 android:id="@+id/navBugReport"

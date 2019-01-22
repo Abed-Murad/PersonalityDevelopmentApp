@@ -62,9 +62,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView"
                 tools:text="22 hours ago" />
 
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

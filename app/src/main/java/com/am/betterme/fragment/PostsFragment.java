@@ -12,6 +12,7 @@ import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostsListViewModel;
 import com.am.betterme.databinding.PostsFragmentBinding;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.orhanobut.logger.Logger;
@@ -56,7 +57,20 @@ public class PostsFragment extends Fragment {
 
     //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
-
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.addTab(mLayout.tagsTabLayout.newTab().setText("Tag"));
+        mLayout.tagsTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 
     @Override

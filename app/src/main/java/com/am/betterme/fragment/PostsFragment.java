@@ -26,7 +26,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import static com.am.betterme.util.CONST.POSTS_KEY;
-import static com.am.betterme.util.CONST.TAGS_ARRAY;
 
 public class PostsFragment extends Fragment {
 
@@ -57,8 +56,6 @@ public class PostsFragment extends Fragment {
 
     //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
-        mLayout.tagsTabLayout.setTags(TAGS_ARRAY);
-        mLayout.tagsTabLayout.setOnTagClickListener(tag -> Toast.makeText(getActivity(), tag, Toast.LENGTH_SHORT).show());
     }
 
     @Override

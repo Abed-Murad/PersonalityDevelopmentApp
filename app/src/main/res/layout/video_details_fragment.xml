@@ -62,16 +62,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView"
                 tools:text="22 hours ago" />
 
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tagsTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_constraintEnd_toEndOf="parent"
-                style="@style/TagGroup"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
-
-
 
 
 

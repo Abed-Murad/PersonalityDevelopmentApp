@@ -72,8 +72,6 @@ public class PostDetailsFragment extends Fragment {
         VideoDetailsFragmentBinding mLayout = VideoDetailsFragmentBinding.inflate(inflater, container, false);
         mLayout.youtubeView.setVisibility(View.VISIBLE);
         setupYoutubeView(mLayout);
-        mLayout.tagsTabLayout.setTags(TAGS_ARRAY);
-        mLayout.tagsTabLayout.setOnTagClickListener(tag -> Toast.makeText(mActivity, tag, Toast.LENGTH_SHORT).show());
         mLayout.setPost(mPost);
         return mLayout;
     }

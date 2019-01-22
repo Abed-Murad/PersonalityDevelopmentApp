@@ -54,7 +54,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 
     /* Views */
-    implementation 'me.gujun.android.taggroup:library:1.4@aar'
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:8.0.1'
 
     /* Util */

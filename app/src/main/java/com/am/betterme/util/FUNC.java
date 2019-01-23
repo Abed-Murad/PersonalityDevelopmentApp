@@ -1,6 +1,5 @@
 package com.am.betterme.util;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,8 +13,6 @@ import com.mikepenz.aboutlibraries.LibsBuilder;
 import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
-
-import static com.am.betterme.util.CONST.BASE_YOUTUBE_URL;
 
 public class FUNC {
     private static final String GITHUB_ACCESS_TOKEN = BuildConfig.GITHUB_ACCESS_TOKEN;

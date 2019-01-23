@@ -20,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import static com.am.betterme.util.CONST.TEST_VIDEO_ID;
 import static com.am.betterme.util.FUNC.shareArticle;
 
 public class PostDetailsFragment extends Fragment {
@@ -84,7 +83,7 @@ public class PostDetailsFragment extends Fragment {
                         initializedYouTubePlayer.addListener(new AbstractYouTubePlayerListener() {
                             @Override
                             public void onReady() {
-                                initializedYouTubePlayer.loadVideo(TEST_VIDEO_ID, 0);
+                                initializedYouTubePlayer.loadVideo(mPost.getUrl(), 0);
                             }
                         }), true);
     }

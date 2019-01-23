@@ -41,7 +41,7 @@ public class PostDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        if (mPost.isVideo()) {
+        if (mPost.getBody().isEmpty()) {
             VideoDetailsFragmentBinding mVideoLayout = setupVideoLayout(inflater, container);
             return mVideoLayout.getRoot();
 

@@ -52,15 +52,6 @@ public class FUNC {
                 .launch(context);
     }
 
-    public static void openVideoOnYoutube(Context context, String id) {
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(BASE_YOUTUBE_URL + id));
-        try {
-            context.startActivity(appIntent);
-        } catch (ActivityNotFoundException ex) {
-            context.startActivity(webIntent);
-        }
-    }
 
     public static String getPrettyDate(Date date) {
         return prettyTime.format(date);

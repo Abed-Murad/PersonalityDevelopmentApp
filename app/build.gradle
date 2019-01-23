@@ -13,6 +13,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        buildConfigField("String" ,"GITHUB_ACCESS_TOKEN" ,GITHUB_ACCESS_TOKEN )
+
     }
     buildTypes {
         release {

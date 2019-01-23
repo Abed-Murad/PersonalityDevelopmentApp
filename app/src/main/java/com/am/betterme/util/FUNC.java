@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.am.betterme.BuildConfig;
 import com.am.betterme.R;
 import com.heinrichreimersoftware.androidissuereporter.IssueReporterLauncher;
 import com.mikepenz.aboutlibraries.Libs;
@@ -14,12 +15,10 @@ import org.ocpsoft.prettytime.PrettyTime;
 
 import java.util.Date;
 
-import androidx.annotation.StyleRes;
-
 import static com.am.betterme.util.CONST.BASE_YOUTUBE_URL;
 
 public class FUNC {
-
+    private static final String GITHUB_ACCESS_TOKEN = BuildConfig.GITHUB_ACCESS_TOKEN;
     private static PrettyTime prettyTime = new PrettyTime();
 
     public static void shareArticle(Context context, String title, String body) {
@@ -46,20 +45,9 @@ public class FUNC {
 
     public static void startBugReportActivity(Context context) {
         IssueReporterLauncher.forTarget("Abed-Murad", "PersonalityDevelopmentApp")
-                // [Optional] Auth token to open issues if users don't have a GitHub account
-                // You can register a bot account on GitHub and copy ist OAuth2 token here.
-                // (See #how-to-create-a-bot-key for further information.)
-                .guestToken("e5eacc37403992048dc70bbdee277ce3f5d69bff")
-                // [Optional] Force users to enter an email adress when the report is sent using
-                // the guest token.
+                .guestToken(GITHUB_ACCESS_TOKEN)
                 .guestEmailRequired(false)
-                // [Optional] Set a minimum character limit for the description to filter out
-                // empty reports.
                 .minDescriptionLength(20)
-                // [Optional] Include other relevant info in the bug report (like custom variables)
-                .putExtraInfo("Test 1", "Example string")
-                .putExtraInfo("Test 2", true)
-                // [Optional] Disable back arrow in toolbar
                 .homeAsUpEnabled(true)
                 .launch(context);
     }

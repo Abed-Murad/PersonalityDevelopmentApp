@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.databinding.CardPostBinding;
 import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
     @Override
     public void onBindViewHolder(@NonNull PostHolder postHolder, final int position) {
         final Post post = getItem(position);
+        Logger.d(post.toString());
         postHolder.bind(post);
     }
 

@@ -119,12 +119,11 @@ public class Post implements Parcelable {
     @Override
     public String toString() {
         return "Post{" +
-                "body='" + body + '\'' +
+                "isVideo=" + isVideo +
                 ", date=" + date +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
-                ", isVideo=" + isVideo +
                 ", tags=" + tags +
                 '}';
     }

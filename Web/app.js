@@ -7,17 +7,18 @@ var config = {
     messagingSenderId: "107769501297"
 };
 firebase.initializeApp(config);
-var firestore = firebase.firestore();
+const firestore = firebase.firestore();
+firestore.settings({
+    timestampsInSnapshots: true
+});
 
-
-const docRef = firestore.doc("sample/Posts");
+const colRef = firestore.collection("Posts");
 
 const urlField = document.getElementById("urlField");
 const imageUrlField = document.getElementById("imageUrlField");
 const titleField = document.getElementById("titleField");
 const bodyField = document.getElementById("bodyField");
 const isVideoCheckBox = document.getElementById("isVideoCheckBox");
-
 const saveButton = document.getElementById("saveButton");
 
 saveButton.addEventListener("click", function () {
@@ -41,7 +42,7 @@ saveButton.addEventListener("click", function () {
     console.log(isVideoChecked);
     console.log(tags);
 
-    docRef.set({
+    colRef.add({
         url: url,
         imageUrl: imageUrl,
         title: title,
@@ -51,6 +52,11 @@ saveButton.addEventListener("click", function () {
         tags: tags
 
     }).then(function () {
+        urlField.value = "";
+        imageUrlField.value = "";
+        titleField.value = "";
+        bodyField.value  = "";
+        isVideoCheckBox.checked = false;
         console.log("status Saved!");
     }).catch(function (error) {
         console.log("Got an error: " + error);

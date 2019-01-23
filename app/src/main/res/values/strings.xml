@@ -20,4 +20,10 @@
     <string name="rate_dialog_action_never">No, thanks</string>
     <string name="rate_dialog_action_later">Later</string>
     <string name="rate_dialog_thank_you">Thank you!</string>
+    <string name="title_all">All</string>
+    <string name="title_articles">Articles</string>
+    <string name="title_videos">Videos</string>
+    <string name="title_rate_us">Rate Us</string>
+    <string name="title_about">About</string>
+    <string name="title_report_a_bug">Report A Bug</string>
 </resources>

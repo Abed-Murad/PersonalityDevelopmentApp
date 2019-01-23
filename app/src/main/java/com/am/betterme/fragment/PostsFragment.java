@@ -174,6 +174,6 @@ public class PostsFragment extends Fragment {
     }
 
 
-//TODO: Create A Listener here to ne implemented by the main Activity so it can change the Fragment Data When ever this drawer button is clicked
+//TODO: Create A Listener here to ne implemented by the menu_main Activity so it can change the Fragment Data When ever this drawer button is clicked
 
 }

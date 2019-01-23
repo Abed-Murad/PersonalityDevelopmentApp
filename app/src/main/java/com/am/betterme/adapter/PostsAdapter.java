@@ -81,9 +81,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
         }
 
         private void bind(Post post) {
-            mBinding.youtubeIconImageView.setVisibility(post.isIs_video() ? View.VISIBLE : View.INVISIBLE);
+            mBinding.youtubeIconImageView.setVisibility(post.isVideo() ? View.VISIBLE : View.INVISIBLE);
             mBinding.setPost(post);
-            Glide.with(mContext).load(post.getImage_url()).into(mBinding.imageView2);
+            Glide.with(mContext).load(post.getImageUrl()).into(mBinding.imageView2);
             mBinding.executePendingBindings();
         }
     }

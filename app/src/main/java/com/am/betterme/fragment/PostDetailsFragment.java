@@ -41,7 +41,7 @@ public class PostDetailsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        if (mPost.isIs_video()) {
+        if (mPost.isVideo()) {
             VideoDetailsFragmentBinding mVideoLayout = setupVideoLayout(inflater, container);
             return mVideoLayout.getRoot();
 
@@ -54,7 +54,7 @@ public class PostDetailsFragment extends Fragment {
 
     private PostDetailsFragmentBinding setupPostLayout(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
         PostDetailsFragmentBinding mLayout = PostDetailsFragmentBinding.inflate(inflater, container, false);
-        Glide.with(mActivity).load(mPost.getImage_url()).into(mLayout.postCoverImageView);
+        Glide.with(mActivity).load(mPost.getImageUrl()).into(mLayout.postCoverImageView);
         mLayout.postCoverImageView.setVisibility(View.VISIBLE);
         mLayout.shareFab.setOnClickListener(v -> shareArticle(mActivity, mLayout.bodyTextView.getText().toString(), mPost.getBody()));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

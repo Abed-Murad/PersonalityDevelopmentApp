@@ -143,6 +143,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
+
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }

@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        RateDialog.with(this, 2, 4); // daysUntilPrompt, launchesUntilPrompt
+        RateDialog.with(this, 2, 4);
         mLayout = DataBindingUtil.setContentView(this, R.layout.activity_main);
         ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);

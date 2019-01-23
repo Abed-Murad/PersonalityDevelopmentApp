@@ -51,15 +51,20 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
         return mPostList == null ? 0 : mPostList.size();
     }
 
+    private void clear() {
+        mPostList.clear();
+
+    }
     public void add(Post post) {
         mPostList.add(post);
-        notifyItemInserted(mPostList.size());
     }
 
     public void addAll(List<Post> postList) {
+        clear();
         for (Post post : postList) {
             add(post);
         }
+        notifyDataSetChanged();
     }
 
     private Post getItem(int position) {

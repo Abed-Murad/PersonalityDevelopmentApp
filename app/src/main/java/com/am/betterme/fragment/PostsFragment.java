@@ -53,7 +53,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
-        ((MainActivity)getActivity()).setOnDataListener(this);
+        ((MainActivity) getActivity()).setOnDataListener(this);
 
 
     }
@@ -126,6 +126,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
 
 
     private void setupRecyclerView() {
+
         mLayout.postsRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mPostsAdapter = new PostsAdapter(mContext, (view, position, model) -> {
             PostsFragmentDirections.ActionPostsFragmentToPostDetailsFragment action = PostsFragmentDirections.actionPostsFragmentToPostDetailsFragment();
@@ -137,11 +138,11 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     }
 
     private void getAllPosts() {
+
         mPostRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
-
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }
@@ -150,11 +151,10 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
 
     private void getVideosOnly() {
 
-        mPostRef.whereEqualTo("is_video", true).get().addOnCompleteListener(task -> {
+        mPostRef.whereEqualTo("isVideo", true).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
-
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }
@@ -162,11 +162,11 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     }
 
     private void getArticlesOnly() {
-        mPostRef.whereEqualTo("is_video", false).get().addOnCompleteListener(task -> {
+
+        mPostRef.whereEqualTo("isVideo", false).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
-
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }
@@ -176,6 +176,16 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
 
     @Override
     public void onChange(int category) {
-        Toast.makeText(mContext, ""+ category, Toast.LENGTH_SHORT).show();
+        switch (category) {
+            case R.id.navAll:
+                getAllPosts();
+                break;
+            case R.id.navArticles:
+                getArticlesOnly();
+                break;
+            case R.id.navVideos:
+                getVideosOnly();
+                break;
+        }
     }
 }

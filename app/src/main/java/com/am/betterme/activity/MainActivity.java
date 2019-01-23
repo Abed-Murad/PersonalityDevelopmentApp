@@ -18,6 +18,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import static com.am.betterme.util.FUNC.startAboutActivity;
@@ -37,7 +38,8 @@ public class MainActivity extends AppCompatActivity
         ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);
         setupDrawer(mCoordinatorLayout.toolbar);
-        Navigation.findNavController(this, R.id.navHostFragment).setGraph(R.navigation.nav_graph, null);
+        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
+        navController.setGraph(R.navigation.nav_graph, null);
     }
 
     private void setupDrawer(Toolbar toolbar) {
@@ -95,17 +97,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-
         int id = item.getItemId();
         switch (id) {
             case R.id.navAll:
-                //TODO: Send Arg to Posts Fragment
-                break;
             case R.id.navArticles:
-                //TODO: Send Arg to Posts Fragment
-                break;
             case R.id.navVideos:
-                //TODO: Send Arg to Posts Fragment
+                changePostRecyclerContent(id);
                 break;
             case R.id.navRateUs:
                 startRateUsActivity(this);
@@ -113,12 +110,16 @@ public class MainActivity extends AppCompatActivity
             case R.id.navAbout:
                 startAboutActivity(this);
                 break;
-                case R.id.navBugReport:
-                    startBugReportActivity(this);
+            case R.id.navBugReport:
+                startBugReportActivity(this);
                 break;
         }
         mLayout.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void changePostRecyclerContent(int category) {
+
     }
 
 

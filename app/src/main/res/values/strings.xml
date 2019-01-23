@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Username</string>
     <string name="action_search">search</string>
     <string name="default_notification_channel_id">123456789</string>
-    <string name="about_libraries_description">This is Descriptiom</string>
+    <string name="about_libraries_description">Developed by: \nGithub.com/Abed-Murad</string>
 
 
     <!--About Me Library-->

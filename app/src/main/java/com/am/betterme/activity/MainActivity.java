@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityMainBinding mLayout;
+    private OnPostsCategoryChangeListener onPostsCategoryChangeListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity
         setupDrawer(mCoordinatorLayout.toolbar);
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
         navController.setGraph(R.navigation.nav_graph, null);
+
+
     }
 
     private void setupDrawer(Toolbar toolbar) {
@@ -119,8 +122,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void changePostRecyclerContent(int category) {
-
+        onPostsCategoryChangeListener.onChange(category);
     }
 
+    public interface OnPostsCategoryChangeListener {
+        void onChange(int category);
+    }
+
+    public void setOnDataListener(OnPostsCategoryChangeListener listener){
+        onPostsCategoryChangeListener=listener;
+    }
 
 }

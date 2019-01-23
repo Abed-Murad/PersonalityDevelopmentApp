@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.am.betterme.R;
+import com.am.betterme.activity.MainActivity;
 import com.am.betterme.adapter.PostsAdapter;
 import com.am.betterme.data.model.Post;
 import com.am.betterme.data.viewmodel.PostsListViewModel;
@@ -40,20 +41,20 @@ import static com.am.betterme.util.CONST.RELATIONSHIPS;
 import static com.am.betterme.util.CONST.SOCIAL_SKILLS;
 import static com.am.betterme.util.CONST.TAGS_ARRAY;
 
-public class PostsFragment extends Fragment {
+public class PostsFragment extends Fragment implements MainActivity.OnPostsCategoryChangeListener {
 
     private PostsListViewModel mViewModel;
     private PostsFragmentBinding mLayout;
     private Context mContext;
     private PostsAdapter mPostsAdapter;
     private CollectionReference mPostRef = FirebaseFirestore.getInstance().collection(POSTS_KEY);
-    String bb = "";
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
+        ((MainActivity)getActivity()).setOnDataListener(this);
+
 
     }
 
@@ -63,11 +64,9 @@ public class PostsFragment extends Fragment {
         mLayout = PostsFragmentBinding.inflate(inflater, container, false);
         setupRecyclerView();
         setupTabLayout();
-
         return mLayout.getRoot();
     }
 
-    //TODO: FIX The OnClick Bug
     private void setupTabLayout() {
         for (int i = 0; i < TAGS_ARRAY.length; i++) {
             TextView customTab = (TextView) LayoutInflater.from(mContext).inflate(R.layout.custom_tab_layout, null);//get custom view
@@ -87,6 +86,7 @@ public class PostsFragment extends Fragment {
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
@@ -174,6 +174,8 @@ public class PostsFragment extends Fragment {
     }
 
 
-//TODO: Create A Listener here to ne implemented by the menu_main Activity so it can change the Fragment Data When ever this drawer button is clicked
-
+    @Override
+    public void onChange(int category) {
+        Toast.makeText(mContext, ""+ category, Toast.LENGTH_SHORT).show();
+    }
 }

@@ -138,12 +138,13 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     }
 
     private void getAllPosts() {
+        mLayout.progressBar.setVisibility(View.VISIBLE);
 
         mPostRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
-
+                mLayout.progressBar.setVisibility(View.INVISIBLE);
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }
@@ -151,11 +152,14 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     }
 
     private void getVideosOnly() {
+        mLayout.progressBar.setVisibility(View.VISIBLE);
 
         mPostRef.whereEqualTo("isVideo", true).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
+                mLayout.progressBar.setVisibility(View.INVISIBLE);
+
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }
@@ -163,11 +167,14 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     }
 
     private void getArticlesOnly() {
+        mLayout.progressBar.setVisibility(View.VISIBLE);
 
         mPostRef.whereEqualTo("isVideo", false).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
+                mLayout.progressBar.setVisibility(View.INVISIBLE);
+
             } else {
                 Logger.e("Error getting documents.", task.getException());
             }

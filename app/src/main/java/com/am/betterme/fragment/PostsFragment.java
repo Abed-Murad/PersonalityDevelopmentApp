@@ -18,6 +18,7 @@ import com.am.betterme.databinding.PostsFragmentBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
@@ -47,15 +48,24 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     private PostsFragmentBinding mLayout;
     private Context mContext;
     private PostsAdapter mPostsAdapter;
-    private CollectionReference mPostRef = FirebaseFirestore.getInstance().collection(POSTS_KEY);
+    private FirebaseFirestore mFireStore;
+    private CollectionReference mPostRef ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = getContext();
+        setupFireStore();
+        mPostRef = FirebaseFirestore.getInstance().collection(POSTS_KEY);
         ((MainActivity) getActivity()).setOnDataListener(this);
+    }
 
-
+    public void setupFireStore() {
+         mFireStore = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        mFireStore.setFirestoreSettings(settings);
     }
 
     @Override
@@ -180,6 +190,9 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
             }
         });
     }
+
+
+
 
 
     @Override

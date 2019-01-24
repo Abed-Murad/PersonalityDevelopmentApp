@@ -2,17 +2,20 @@ package com.am.betterme.util;
 
 import android.app.Application;
 
+import com.crashlytics.android.Crashlytics;
 import com.marcoscg.ratedialog.RateDialog;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+import io.fabric.sdk.android.Fabric;
 
 
 public class AMApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         setupLogger();
     }
 

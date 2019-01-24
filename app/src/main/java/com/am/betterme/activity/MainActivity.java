@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity
         setupDrawer(mCoordinatorLayout.toolbar);
         NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
         navController.setGraph(R.navigation.nav_graph, null);
-
-
+            throw new RuntimeException("This is a crash");
     }
 
     private void setupDrawer(Toolbar toolbar) {

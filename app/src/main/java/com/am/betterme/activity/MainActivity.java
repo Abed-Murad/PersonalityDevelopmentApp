@@ -18,8 +18,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import static com.am.betterme.util.FUNC.startAboutActivity;
 import static com.am.betterme.util.FUNC.startBugReportActivity;
@@ -39,9 +37,6 @@ public class MainActivity extends AppCompatActivity
         ContentMainBinding mCoordinatorLayout = mLayout.includeLayout;
         setSupportActionBar(mCoordinatorLayout.toolbar);
         setupDrawer(mCoordinatorLayout.toolbar);
-        NavController navController = Navigation.findNavController(this, R.id.navHostFragment);
-        navController.setGraph(R.navigation.nav_graph, null);
-            throw new RuntimeException("This is a crash");
     }
 
     private void setupDrawer(Toolbar toolbar) {

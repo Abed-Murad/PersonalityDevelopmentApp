@@ -19,6 +19,7 @@
             android:defaultValue="all" />
 
     </fragment>
+
     <fragment
         android:id="@+id/postDetailsFragment"
         android:name="com.am.betterme.fragment.PostDetailsFragment"
@@ -33,4 +34,5 @@
             android:defaultValue="@null"
             app:argType="com.am.betterme.data.model.Post" />
     </fragment>
+
 </navigation>

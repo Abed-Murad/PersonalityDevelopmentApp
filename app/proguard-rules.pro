@@ -23,6 +23,5 @@
     public static final int define_*;
 }
 -keep class org.ocpsoft.prettytime.i18n.**
--keep class * extends android.support.v4.app.Fragment{}
 
 

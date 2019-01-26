@@ -16,6 +16,11 @@ The Finial App will have two flavors free , and paid (which will have no ads and
 
 This App is for people who would like to improve their personality
 
+## Screenshots
+
+![Screenshots](https://github.com/Abed-Murad/PersonalityDevelopmentApp/blob/master/Google%20Play%20Res/Store/MockUp%20Cover%20.png?raw=true "Title")
+
+
 ## Features
 
 Version 1

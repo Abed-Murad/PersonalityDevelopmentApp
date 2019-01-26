@@ -18,7 +18,7 @@ This App is for people who would like to improve their personality
 
 ## Screenshots
 
-![Screenshots](https://github.com/Abed-Murad/PersonalityDevelopmentApp/blob/master/Google%20Play%20Res/Store/MockUp%20Cover%20.png?raw=true "Title")
+![Screenshots](https://github.com/Abed-Murad/PersonalityDevelopmentApp/blob/master/Google%20Play%20Res/Store/MockUp%20Cover%201.2.png?raw=true "Title")
 
 
 ## Features

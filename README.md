@@ -1,10 +1,12 @@
+# Personality Development App Replica
+
 
 ## Screenshots
 
-![Screenshots](https://github.com/Abed-Murad/PersonalityDevelopmentApp/blob/master/Google%20Play%20Res/Store/MockUp%20Cover%201.2.png?raw=true "Title")
+![Screenshots](https://github.com/Abed-Murad/PersonalityDevelopmentApp/blob/master/Extra/Github%20Screenshots.png?raw=true "Title")
+
 GitHub Username: @Abed-Murad
 
-Personality Development App Replica
 
 Description
 ===========
@@ -155,9 +157,6 @@ Room: data persistence
 ### Describe how you will implement Google Play Services or other external services.
 
 The App will use Google Sign-in, Google Analytics, Throw Firebase
-
-|\
- |
 
 Required Tasks
 ==============

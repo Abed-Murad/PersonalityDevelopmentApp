@@ -53,7 +53,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostHolder> 
 
     private void clear() {
         mPostList.clear();
-
     }
     public void add(Post post) {
         mPostList.add(post);

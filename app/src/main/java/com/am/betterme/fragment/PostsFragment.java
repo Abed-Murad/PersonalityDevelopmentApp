@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.am.betterme.R;
 import com.am.betterme.activity.MainActivity;
 import com.am.betterme.adapter.PostsAdapter;
@@ -19,10 +18,9 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.Query;
 import com.orhanobut.logger.Logger;
-
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -56,7 +54,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
         super.onCreate(savedInstanceState);
         mContext = getContext();
         setupFireStore();
-        mPostRef = FirebaseFirestore.getInstance().collection(POSTS_KEY);
+        mPostRef = mFireStore.collection(POSTS_KEY);
         ((MainActivity) getActivity()).setOnDataListener(this);
     }
 
@@ -149,8 +147,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
 
     private void getAllPosts() {
         mLayout.progressBar.setVisibility(View.VISIBLE);
-
-        mPostRef.get().addOnCompleteListener(task -> {
+        mPostRef.orderBy("date" , Query.Direction.DESCENDING).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
@@ -164,7 +161,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     private void getVideosOnly() {
         mLayout.progressBar.setVisibility(View.VISIBLE);
 
-        mPostRef.whereEqualTo("isVideo", true).get().addOnCompleteListener(task -> {
+        mPostRef.orderBy("date" , Query.Direction.DESCENDING).whereEqualTo("isVideo", true).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);
@@ -179,7 +176,7 @@ public class PostsFragment extends Fragment implements MainActivity.OnPostsCateg
     private void getArticlesOnly() {
         mLayout.progressBar.setVisibility(View.VISIBLE);
 
-        mPostRef.whereEqualTo("isVideo", false).get().addOnCompleteListener(task -> {
+        mPostRef.orderBy("date" , Query.Direction.DESCENDING).whereEqualTo("isVideo", false).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 List<Post> postList = task.getResult().toObjects(Post.class);
                 mPostsAdapter.addAll(postList);

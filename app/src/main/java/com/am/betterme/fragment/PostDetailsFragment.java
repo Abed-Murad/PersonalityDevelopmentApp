@@ -95,4 +95,6 @@ public class PostDetailsFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+
+
 }
